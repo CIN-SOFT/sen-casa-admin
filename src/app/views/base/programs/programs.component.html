@@ -1,0 +1,90 @@
+<div class="fade-in">
+  <c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header>
+          <strong>Liste des </strong> <small>Programmes</small>
+        </c-card-header>
+        <c-card-body>
+          
+            <table [bordered]="true" cTable>
+              <thead>
+              <tr>
+                <th scope="col">Miniature</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Zone</th>
+                <th scope="col">Agent</th>
+                <th scope="col">Inscrits</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <img src="../../../../assets/img/avatars/1.jpg" width="40" alt="" class="rounded">
+                  </th>
+                  <td>
+                    Programme  villes neuves
+                  </td>
+                  <td>
+                    Sébikotane
+                  </td>
+                  <td>
+                    Aliou Thiema
+                  </td>
+                  <td>
+                    <c-badge color="secondary">10</c-badge>
+                  </td>
+                  <td>
+                    <c-badge color="danger">Suspendu</c-badge>
+                  </td>
+                  <td>
+                    <c-button-group aria-label="Actions" role="group" class="actions">
+                      <button cButton color="primary">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                      </button>
+                      <button cButton color="danger">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                      </button>
+                    </c-button-group>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <img src="../../../../assets/img/avatars/1.jpg" width="40" alt="" class="rounded">
+                  </th>
+                  <td>
+                    Programme  villes neuves
+                  </td>
+                  <td>
+                    Sébikotane
+                  </td>
+                  <td>
+                    Aliou Thiema
+                  </td>
+                  <td>
+                    <c-badge color="secondary">10</c-badge>
+                  </td>
+                  <td>
+                    <c-badge color="danger">Suspendu</c-badge>
+                  </td>
+                  <td>
+                    <c-button-group aria-label="Actions" role="group" class="actions">
+                      <button cButton color="primary">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                      </button>
+                      <button cButton color="danger">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                      </button>
+                    </c-button-group>
+                  </td>
+                </tr>
+              
+             </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</div>

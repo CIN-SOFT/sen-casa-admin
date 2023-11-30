@@ -1,0 +1,18 @@
+<div class="image-component mt-4 mb-5">
+    <c-row>
+        <c-col class="mb-4" xs="12" lg="3" md="3" sm="6">
+            <div class="new-img">
+                <input type="file" id="file" (change)="onFileChange($event)" multiple />
+                <label for="file"> <svg cIcon [name]="'cilDataTransferUp'" [title]="'Telecharger'"></svg>  <br><span>Choisir des images</span></label>
+            </div>
+        </c-col>
+        <c-col class="mb-4" xs="12" lg="3" md="3" sm="6" *ngFor="let img of images; let i = index">
+            <div class="images" >
+                <img [src]="img" alt="">
+                <div  class="delete" (click)="removeImage(i)" >
+                    <svg cIcon [name]="'cilX'" [title]="'Supprimer'"></svg>
+                </div>
+            </div>
+        </c-col>
+    </c-row>
+</div>
