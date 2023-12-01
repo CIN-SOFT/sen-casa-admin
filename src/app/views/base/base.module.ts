@@ -16,6 +16,7 @@ import {
   FormModule,
   GridModule,
   ListGroupModule,
+  ModalModule,
   NavModule,
   PaginationModule,
   PlaceholderModule,
@@ -54,13 +55,15 @@ import { TabsComponent } from './tabs/tabs.component';
 // Components Routing
 import { BaseRoutingModule } from './base-routing.module';
 import { ImageUploadComponent } from 'src/app/components/image-upload/image-upload.component';
-
+import { AccountsComponent } from './accounts/accounts.component';
 import { NewProgramComponent } from './new-program/new-program.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 import { IconSetService } from '@coreui/icons-angular';
 import { brandSet, flagSet, freeSet } from '@coreui/icons';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 @NgModule({
   imports: [
@@ -93,7 +96,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PopoverModule,
     TableModule,
     DocsComponentsModule,
-    FontAwesomeModule
+    ModalModule,
+
+    FontAwesomeModule,
+    EditorModule
   ],
   exports: [
     FontAwesomeModule
@@ -115,8 +121,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TooltipsComponent,
     TabsComponent,
     PlaceholdersComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    AccountsComponent,
+    SubscriptionsComponent
   ],
+  providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ]
 })
 export class BaseModule {
   constructor(private iconSet: IconSetService){

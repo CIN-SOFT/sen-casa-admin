@@ -1,0 +1,93 @@
+<div class="fade-in">
+  <c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header>
+          Listes des  <strong> souscriptions </strong> 
+        </c-card-header>
+        <c-card-body>
+          <c-row>
+            <c-col xs="12" sm="12" md="6" lg="6">
+              <label>Filtrer par statut</label>
+              <select aria-label="Type" cSelect class="mb-3" sizing="lg">
+                <option>----------------</option>
+                <option value="1">Actifs</option>
+                <option value="2">En cours de verification d'identite</option>
+                <option value="3">En attente de versement initiale</option>
+                <option value="6">En attente de modification document</option>
+                <option value="7">Suspendus</option>
+                <option value="6">Inactifs</option>
+                <!-- <option value="6">56 mois</option> -->
+              </select>
+            </c-col>
+          </c-row>
+            <table [bordered]="true" cTable>
+              <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Souscipteur</th>
+                <th scope="col">Programme</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Montant verse</th>
+                <th scope="col">Montant du</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    22/11/2023
+                  </th>
+                  <td>
+                    Aliou Diouf
+                  </td>
+                  <td>
+                    Yaaxanal
+                  </td>
+                  <td>
+                    En cours
+                  </td>
+                  <td>
+                    5.006.000 FCFA
+                  </td>
+                  <td>
+                    <c-badge color="danger">3.504.000 FCFA</c-badge>
+                  </td>
+                  <td>
+                    <c-button-group aria-label="Actions" role="group" class="actions">
+                      <button cButton color="primary" (click)="toggleUserDetails()">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                      </button>
+                      <button cButton color="danger">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                      </button>
+                    </c-button-group>
+                  </td>
+                </tr>
+              
+             </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</div>
+
+
+<!-- modal account details -->
+<c-modal #userDetailsModal backdrop="static" 
+  [visible]="modalVisible" [keyboard]="false" id="userDetails"
+  (visibleChange)="handleVisibilityModal($event)" scrollable alignment="center" 
+  size="xl">
+  <c-modal-header>
+    <h5 cModalTitle>Modal title</h5>
+    <button [cModalToggle]="userDetailsModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>Woohoo, you&#39;re reading this text in a modal!</c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="userDetailsModal.id" cButton color="secondary">
+      Fermer
+    </button>
+    <button cButton color="primary">Understood</button>
+  </c-modal-footer>
+</c-modal>

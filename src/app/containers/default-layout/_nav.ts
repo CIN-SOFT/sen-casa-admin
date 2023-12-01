@@ -6,20 +6,11 @@ export const navItems: INavData[] = [
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' },
   },
+ 
   {
-    title: true,
-    name: 'Comptes'
-  },
-  {
-    name: 'Actifs',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-drop' }
-  },
-  {
-    name: 'En attente',
-    url: '/theme/typography',
-    linkProps: { fragment: 'someAnchor' },
-    iconComponent: { name: 'cil-pencil' }
+    name: 'Comptes',
+    url: '/base/accounts',
+    iconComponent: { name: 'cil-people' }
   },
   {
     name: 'CASA-Programmes',
@@ -94,22 +85,22 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Souscriptions',
-    url: '/buttons',
+    url: '/base/subscriptions',
     iconComponent: { name: 'cil-cursor' },
-    children: [
-      {
-        name: 'En attente',
-        url: '/buttons/buttons'
-      },
-      {
-        name: 'Valide',
-        url: '/buttons/button-groups'
-      },
-      {
-        name: 'Suspendu',
-        url: '/buttons/dropdowns'
-      }
-    ]
+    // children: [
+    //   {
+    //     name: 'En attente',
+    //     url: '/buttons/buttons'
+    //   },
+    //   {
+    //     name: 'Valide',
+    //     url: '/buttons/button-groups'
+    //   },
+    //   {
+    //     name: 'Suspendu',
+    //     url: '/buttons/dropdowns'
+    //   }
+    // ]
   },
   {
     name: 'Transactions',

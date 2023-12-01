@@ -17,6 +17,8 @@ import { TooltipsComponent } from './tooltips/tooltips.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { PlaceholdersComponent } from './placeholders/placeholders.component';
 import { NewProgramComponent } from './new-program/new-program.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 const routes: Routes = [
   {
@@ -43,6 +45,20 @@ const routes: Routes = [
         data: {
           title: 'Programmes',
         },
+      },
+      {
+        path: 'accounts',
+        component: AccountsComponent,
+        data: {
+          title: 'Comptes'
+        }
+      },
+      {
+        path: 'subscriptions',
+        component: SubscriptionsComponent,
+        data: {
+          title: 'Souscriptions'
+        }
       },
       {
         path: 'program/add',

@@ -38,11 +38,13 @@
     "@fortawesome/angular-fontawesome": "^0.14.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@tinymce/tinymce-angular": "^7.0.0",
     "chart.js": "^3.9.1",
     "dropzone": "^6.0.0-beta.2",
     "lodash-es": "^4.17.21",
     "ngx-scrollbar": "^13.0.3",
     "rxjs": "~7.8.1",
+    "tinymce": "^6.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
