@@ -1,0 +1,23 @@
+.property-details-container{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    .card-container{
+        // height: 400px;
+        // overflow-y: scroll;
+        // scroll-behavior: smooth;
+        c-card{
+            padding: 8px;
+            ul{
+                padding: 0;
+            }
+            li{
+                list-style: none;
+                line-height: 50px;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        
+    }
+}

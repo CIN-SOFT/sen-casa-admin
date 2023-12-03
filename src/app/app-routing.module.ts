@@ -36,6 +36,11 @@ const routes: Routes = [
           import('./views/base/base.module').then((m) => m.BaseModule)
       },
       {
+        path: 'admin',
+        loadChildren: () =>
+          import('./views/admin/admin.module').then((m) => m.AdminModule)
+      },
+      {
         path: 'buttons',
         loadChildren: () =>
           import('./views/buttons/buttons.module').then((m) => m.ButtonsModule)

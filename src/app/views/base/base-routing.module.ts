@@ -19,6 +19,9 @@ import { PlaceholdersComponent } from './placeholders/placeholders.component';
 import { NewProgramComponent } from './new-program/new-program.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { PropertiesComponent } from './properties/properties.component';
+import { NewPropertyComponent } from './new-property/new-property.component';
+import { PropertyDetailsComponent } from './property-details/property-details.component';
 
 const routes: Routes = [
   {
@@ -43,8 +46,29 @@ const routes: Routes = [
         path: 'programs',
         component: ProgramsComponent,
         data: {
+          title: 'Proprietés',
+        },
+      },
+      {
+        path: 'properties',
+        component: PropertiesComponent,
+        data: {
           title: 'Programmes',
         },
+      },
+      {
+        path: 'property/add',
+        component: NewPropertyComponent,
+        data: {
+          title: 'Ajouter une nouvelle Proprieté'
+        }
+      },
+      {
+        path: 'property/details/:id',
+        component: PropertyDetailsComponent,
+        data: {
+          title: 'Details de la Proprieté'
+        }
       },
       {
         path: 'accounts',

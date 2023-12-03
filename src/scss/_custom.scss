@@ -1,2 +1,32 @@
 // Here you can add other styles
-
+.float.right{
+    float: right;
+}
+.white-c{
+    color: #fff;
+}
+.d-flex{
+    display: flex;
+}
+.justify-between{
+    justify-content: space-between;
+    align-items: center;
+}
+.form-select{
+    height: calc(3.5rem + 2px);
+    line-height: 1.25;
+    padding: 1rem 0.75rem;
+    font-size: 1rem;
+}
+.red-color{
+    color: rgb(219, 11, 11);;
+}
+.tox-promotion,
+.tox-statusbar__right-container{
+    display: none !important;
+}
+.main-btn{
+    width: 150px;
+    margin-left: 20px;
+    color: #fff;
+}

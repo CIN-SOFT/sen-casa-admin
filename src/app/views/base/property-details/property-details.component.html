@@ -1,0 +1,47 @@
+<div class="property-details-container">
+    <div>
+        <h5>Programme CASA-Nueve - Maison 1</h5>
+        <p>Date: <strong>12/05/2023</strong></p>
+    </div>
+    <div class="caroussel-container">
+        <c-row>
+            <c-col sm="12" xs="12" md="12" lg="9">
+                <c-carousel (itemChange)="onItemChange($event)" [activeIndex]="activeIndex">
+                    <c-carousel-indicators></c-carousel-indicators>
+                    <c-carousel-inner>
+                      <c-carousel-item *ngFor="let slide of property?.images">
+                        <img
+                          [src]="slide"
+                          alt="Image"
+                          class="d-block w-100"
+                          height="400"
+                          loading="lazy" />
+                      </c-carousel-item>
+                    </c-carousel-inner>
+                    <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+                    <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+                </c-carousel>
+            </c-col>
+            <c-col sm="12" xs="12" md="12" lg="3">
+                <div class="card-container">
+                    <c-card >
+                        <ul>
+                            <li>Adresse: <strong>{{property.address}}</strong></li>
+                            <li>Superficie: <strong>{{property.address}}</strong></li>
+                            <li>Prix: <strong>{{property.address}}</strong></li>
+                            <li>Dépot initial: <strong>{{property.address}}</strong></li>
+                            <li>Epargne minimum: <strong>{{property.address}}</strong></li>
+                            <li>Dur&eacute;e &eacute;pargne: <strong>{{property.address}}</strong></li>
+                        </ul>
+                        <!-- <img
+                          [src]="slide"
+                          alt="Image"
+                          class="d-block w-100"
+                          loading="lazy" /> -->
+                    </c-card>
+                </div>
+            </c-col>
+        </c-row>
+        
+    </div>
+</div>
