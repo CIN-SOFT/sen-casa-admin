@@ -40,6 +40,8 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+import { TransactionService } from './services/transaction.service';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -53,6 +55,7 @@ const APP_CONTAINERS = [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     AvatarModule,
     BreadcrumbModule,
     FooterModule,
@@ -84,7 +87,8 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,
+    TransactionService
   ],
   bootstrap: [AppComponent],
 })

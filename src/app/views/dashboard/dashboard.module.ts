@@ -14,13 +14,14 @@ import {
   TableModule,
   TabsModule
 } from '@coreui/angular';
-import { IconModule } from '@coreui/icons-angular';
+import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 
 import { WidgetsModule } from '../widgets/widgets.module';
+import { freeSet, brandSet, flagSet } from '@coreui/icons';
 
 @NgModule({
   imports: [
@@ -45,4 +46,7 @@ import { WidgetsModule } from '../widgets/widgets.module';
   declarations: [DashboardComponent]
 })
 export class DashboardModule {
+  constructor(private iconSet: IconSetService){
+    iconSet.icons = { ...freeSet, ...brandSet, ...flagSet};
+  }
 }

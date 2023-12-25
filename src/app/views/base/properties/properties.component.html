@@ -3,7 +3,10 @@
     <c-col xs="12">
       <c-card class="mb-4">
         <c-card-header>
-          <strong>Liste des </strong> <small>Programmes</small>
+          <strong>Liste des </strong> <small>propriétés</small>
+          <button cButton color="primary"  class="float right" (click)="openAddNewProperty()">
+            <fa-icon [icon]="faPlus" class="white-c" ></fa-icon>
+          </button>
         </c-card-header>
         <c-card-body>
           

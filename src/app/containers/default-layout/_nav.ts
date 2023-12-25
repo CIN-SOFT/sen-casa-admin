@@ -6,10 +6,10 @@ export const navItems: INavData[] = [
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' },
   },
-  {
-    name: 'CASA',
-    title: true
-  },
+  // {
+  //   name: 'CASA',
+  //   title: true
+  // },
   {
     name: 'Comptes',
     url: '/base/accounts',
@@ -17,21 +17,31 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Programmes',
-    url: '/base',
+    url: '/base/programs',
     iconComponent: { name: 'cil-puzzle' },
-    children: [
-      {
-        name: 'Liste',
-        url: '/base/programs'
-      },
-      {
-        name: 'Proprietés',
-        url: '/base/properties'
-      },
-      {
-        name: 'Nouvelle Proprieté',
-        url: '/base/property/add'
-      },
+  },
+  {
+    name: 'Proprietés',
+    url: '/base/properties',
+    iconComponent: { name: 'cil-puzzle' },
+  },
+  // {
+  //   name: 'Programmes',
+  //   url: '/base',
+  //   iconComponent: { name: 'cil-puzzle' },
+    // children: [
+    //   {
+    //     name: 'Liste',
+    //     url: '/base/programs'
+    //   },
+    //   {
+    //     name: 'Proprietés',
+    //     url: '/base/properties'
+    //   },
+    //   {
+    //     name: 'Nouvelle Proprieté',
+    //     url: '/base/property/add'
+    //   },
       // {
       //   name: 'Zones',
       //   url: '/base/cards'
@@ -84,8 +94,8 @@ export const navItems: INavData[] = [
       //   name: 'Tooltips',
       //   url: '/base/tooltips'
       // }
-    ]
-  },
+    //]
+  //},
   {
     name: 'Souscriptions',
     url: '/base/subscriptions',
@@ -109,15 +119,15 @@ export const navItems: INavData[] = [
     name: 'Transactions',
     url: '/forms',
     iconComponent: { name: 'cil-notes' },
-    children: [
-      {
-        name: 'En cours',
-        url: '/forms/form-control'
-      },
-      {
-        name: 'Autres',
-        url: '/forms/select'
-      },
+    // children: [
+    //   {
+    //     name: 'En cours',
+    //     url: '/forms/form-control'
+    //   },
+    //   {
+    //     name: 'Autres',
+    //     url: '/forms/select'
+    //   },
       // {
       //   name: 'Checks & Radios',
       //   url: '/forms/checks-radios'
@@ -142,7 +152,7 @@ export const navItems: INavData[] = [
       //   name: 'Validation',
       //   url: '/forms/validation'
       // }
-    ]
+   // ]
   },
   {
     name: 'Statistiques',
@@ -208,24 +218,24 @@ export const navItems: INavData[] = [
     title: true,
     name: 'Administration'
   },
-  {
-    name: 'Zones',
-    url: '/admin/zones',
-    iconComponent: { name: 'cil-star' },
-  },
-  {
-    name: 'Moyens de paiement',
-    url: '/admin/payment-method',
-    iconComponent: { name: 'cil-star' },
-  },
-  {
-    name: 'Roles',
-    url: '/admin/roles',
-    iconComponent: { name: 'cil-star' },
-  },
+  // {
+  //   name: 'Zones',
+  //   url: '/admin/zones',
+  //   iconComponent: { name: 'cil-star' },
+  // },
+  // {
+  //   name: 'Moyens de paiement',
+  //   url: '/admin/payment-method',
+  //   iconComponent: { name: 'cil-star' },
+  // },
+  // {
+  //   name: 'Roles',
+  //   url: '/admin/roles',
+  //   iconComponent: { name: 'cil-star' },
+  // },
   {
     name: 'Utilisateurs',
     url: '/admin/users',
-    iconComponent: { name: 'cil-star' },
+    iconComponent: { name: 'cil-user' },
   }
 ];

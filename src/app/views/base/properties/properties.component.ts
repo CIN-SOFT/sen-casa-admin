@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faEye, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   templateUrl: './properties.component.html',
@@ -9,6 +9,7 @@ import { faEye, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 export class PropertiesComponent implements OnInit {
   faEye = faEye;
   faTrash = faTrashCan;
+  faPlus = faPlus;
   modalModalDetailsVisible: boolean = false;
   constructor(private router: Router) {}
 
@@ -18,6 +19,9 @@ export class PropertiesComponent implements OnInit {
    console.log(event)
   }
 
+  openAddNewProperty(){
+    this.router.navigate(['/base/property/add'])
+  }
   toggleDetailsModal(property: any){
     this.router.navigate(['/base/property/details', property.id])
  }

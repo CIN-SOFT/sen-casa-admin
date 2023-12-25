@@ -16,8 +16,10 @@ export class ProgramsComponent implements OnInit {
     id: new FormControl(undefined),
     name: new FormControl('', Validators.required),
     status: new FormControl(null),
-    zone: new FormControl(null),
-    image: new FormControl('', Validators.required)
+    location: new FormControl(null, Validators.required),
+    lat: new FormControl(null),
+    lng: new FormControl(null),
+    images: new FormControl('', Validators.required)
  });
   constructor() {}
 
