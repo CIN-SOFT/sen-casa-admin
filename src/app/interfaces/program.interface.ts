@@ -4,4 +4,5 @@ export interface Program{
     lat: any;
     lng: any;
     location: string;
+    principalImage?: string[]
 }

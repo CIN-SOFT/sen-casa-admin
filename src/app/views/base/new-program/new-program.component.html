@@ -1,61 +1,152 @@
-
-
-
-<c-modal #addProgramModal backdrop="static" 
-  [visible]="modalVisible" [keyboard]="false" id="addProgramModal"
-  (visibleChange)="handleVisibilityModal($event)" scrollable alignment="center">
-  <c-modal-header>
-    <h5 cModalTitle>Ajouter un moyen de programme</h5>
-    <button [cModalToggle]="addProgramModal.id" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>
-    <div class="fade-in">
-      <c-row ngPreserveWhitespaces>
-        <c-col class="mb-4" xs="12">
-          <c-card>
-            <c-card-header>
-              <strong>Ajouter un nouveau programme</strong>
-            </c-card-header>
-            <c-card-body>
-              <div class="w-100 img-section">
-                <strong>Ajouter des images</strong>
-                <app-image-upload  [options]="{}" [images]="[]" (imageLoader)="setImages($event)"></app-image-upload>
-              </div>
-              <div class="fields-section">
-                <form [formGroup]="programFrom">
-                  <c-row>
-                    <c-col xs="12" sm="12" md="6" lg="6">
-                      <div [cFormFloating]="true" class="mb-3">
-                        <input cFormControl id="programName" placeholder="Nom du programme" type="text" formControlName="" />
-                        <label cLabel for="programName">Nom du programme</label>
+<div class="fade-in">
+  <c-row ngPreserveWhitespaces>
+    <c-col class="mb-4" xs="12">
+      <c-card>
+        <c-card-header>
+          <strong>Ajouter un nouveau programme</strong>
+        </c-card-header>
+        <c-card-body>
+          <div class="w-100 img-section" id="principalImage">
+            <div
+                      *ngIf="
+                        principalImage?.invalid &&
+                        (principalImage?.dirty || principalImage?.touched)
+                      "
+                      class="red-color"
+                    >
+                      <div *ngIf="principalImage?.errors?.['required']">
+                        L'image est requise
                       </div>
-                    </c-col>
-                    <c-col xs="12" sm="12" md="6" lg="6">
+              </div>
+            <strong>Ajouter des images</strong>
+            <app-image-upload
+              [options]="{}"
+              [images]="[]"
+              (imageLoader)="setImages($event)"
+            ></app-image-upload>
+            
+          </div>
+          <div class="fields-section">
+            <form [formGroup]="programFrom" (ngSubmit)="checkFormField()">
+              <c-row>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input
+                      cFormControl
+                      id="name"
+                      placeholder="Nom du programme"
+                      type="text"
+                      formControlName="name"
+                    />
+                    <label cLabel for="programName">Nom du programme</label>
+                    <div
+                      *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+                      class="red-color"
+                    >
+                      <div *ngIf="name?.errors?.['required']">
+                        Le nom est requis
+                      </div>
+                      <div *ngIf="name?.errors?.['minlength']">
+                        Il faut 4 caractères au minimum
+                      </div>
+                    </div>
+                  </div>
+                </c-col>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input
+                      cFormControl
+                      id="location"
+                      placeholder="Zone"
+                      type="text"
+                      formControlName="location"
+                    />
+                    <label cLabel for="location">Zone</label>
+                    <div
+                      *ngIf="
+                        location?.invalid &&
+                        (location?.dirty || location?.touched)
+                      "
+                      class="red-color"
+                    >
+                      <div *ngIf="location?.errors?.['required']">
+                        La zone est requise
+                      </div>
+                    </div>
+                  </div>
+                </c-col>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input
+                      cFormControl
+                      id="lat"
+                      placeholder="Lattitude"
+                      type="number"
+                      formControlName="lat"
+                    />
+                    <label cLabel for="lat">Lattitude</label>
+                    <div
+                      *ngIf="lat?.invalid && (lat?.dirty || lat?.touched)"
+                      class="red-color"
+                    >
+                      <div *ngIf="lat?.errors?.['required']">
+                        La Lattitude est requise
+                      </div>
+                    </div>
+                  </div>
+                </c-col>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input
+                      cFormControl
+                      id="lng"
+                      placeholder="Longitude"
+                      type="number"
+                      formControlName="lng"
+                    />
+                    <label cLabel for="lng">Longitude</label>
+                    <div
+                      *ngIf="lng?.invalid && (lng?.dirty || lng?.touched)"
+                      class="red-color"
+                    >
+                      <div *ngIf="lng?.errors?.['required']">
+                        La longitude est requise
+                      </div>
+                    </div>
+                  </div>
+                </c-col>
+                <!-- <c-col xs="12" sm="12" md="6" lg="6">
                       <div [cFormFloating]="true" class="mb-3">
                         <input cFormControl id="zone" placeholder="Zone" type="text" />
                         <label cLabel for="zone">Status</label>
                       </div>
-                    </c-col>
-                  </c-row>
-                  <c-row>
-                    <c-col>
-                      <button cButton class="mb-3" color="primary" size="lg">
-                        Ajouter
-                      </button>
-                    </c-col>
-                  </c-row>
-                </form>
-              </div>
-            </c-card-body>
-          </c-card>
-        </c-col>
-      </c-row>
-    </div>
-  </c-modal-body>
-  <c-modal-footer>
-    <button [cModalToggle]="addProgramModal.id" cButton color="secondary">
-      Fermer
-    </button>
-    <button cButton color="primary">Ajouter</button>
-  </c-modal-footer>
-</c-modal>
+                    </c-col> -->
+              </c-row>
+              <c-row class="text-center d-flex gap-30 justify-center">
+                  <button
+                    cButton
+                    class="mb-3 white-color add-btn"
+                    color="primary"
+                    size="lg"
+                    type="submit"
+                  >
+                    Ajouter
+                  </button>
+                
+                  <button
+                    cButton
+                    class="mb-3 white-color close-btn"
+                    color="primary"
+                    size="lg"
+                    type="reset"
+                  >
+                    Retour
+                  </button>
+              </c-row>
+            </form>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</div>

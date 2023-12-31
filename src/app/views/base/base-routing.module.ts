@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Base',
+      title: '',
     },
     children: [
       {
@@ -47,6 +47,13 @@ const routes: Routes = [
         component: ProgramsComponent,
         data: {
           title: 'Proprietés',
+        },
+      },
+      {
+        path: 'program/add',
+        component: NewProgramComponent,
+        data: {
+          title: 'Aouter un nouveau programme',
         },
       },
       {

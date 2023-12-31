@@ -26,12 +26,11 @@
                 <div class="card-container">
                     <c-card >
                         <ul>
-                            <li>Adresse: <strong>{{property.address}}</strong></li>
-                            <li>Superficie: <strong>{{property.address}}</strong></li>
-                            <li>Prix: <strong>{{property.address}}</strong></li>
-                            <li>Dépot initial: <strong>{{property.address}}</strong></li>
-                            <li>Epargne minimum: <strong>{{property.address}}</strong></li>
-                            <li>Dur&eacute;e &eacute;pargne: <strong>{{property.address}}</strong></li>
+                            <li>Adresse: <strong>{{property?.location}}</strong></li>
+                            <li>Superficie: <strong>{{property?.area}}</strong></li>
+                            <li>Prix: <strong>{{property?.price}} FCFA</strong></li>
+                            <li>Epargne minimum: <strong>{{property?.minimumSave}}</strong></li>
+                            <li>Dur&eacute;e &eacute;pargne: <strong>{{property?.paymentDuration}}</strong></li>
                         </ul>
                         <!-- <img
                           [src]="slide"

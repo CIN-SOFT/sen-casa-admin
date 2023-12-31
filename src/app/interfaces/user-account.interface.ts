@@ -1,4 +1,4 @@
-export interface User{
+export interface UserAccount{
     id?: number;
     firstName: string;
     lastName: string;
@@ -12,4 +12,5 @@ export interface User{
     address?: string;
     dateOfBirth?: string;
     nationality?: string;
+    status?: string;
 }

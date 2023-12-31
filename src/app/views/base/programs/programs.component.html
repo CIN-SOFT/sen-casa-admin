@@ -4,7 +4,7 @@
       <c-card class="mb-4">
         <c-card-header class="d-flex justify-between">
           <label>Liste des <strong> Programmes </strong></label> 
-          <button cButton color="primary"  class="float right" (click)="toggleAddModal()">
+          <button cButton color="primary"  class="float right" [routerLink]="['/base/program/add']">
             <fa-icon [icon]="faPlus" class="white-c" ></fa-icon>
           </button>
         </c-card-header>
@@ -15,43 +15,24 @@
               <tr>
                 <th scope="col">Miniature</th>
                 <th scope="col">Nom</th>
+                <th scope="col">Zone</th>
                 <th scope="col">Statut</th>
                 <th scope="col">Actions</th>
               </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let program of programs">
                   <th scope="row">
-                    <img src="../../../../assets/img/avatars/1.jpg" width="40" alt="" class="rounded">
+                    <img [src]="program.principalImage?.at(0)" width="40" alt="" class="rounded">
                   </th>
                   <td>
-                    Programme  villes neuves
-                  </td>
-                 
-                  <td>
-                    <c-badge color="danger">Suspendu</c-badge>
+                    <b>{{program.name}}</b>
                   </td>
                   <td>
-                    <c-button-group aria-label="Actions" role="group" class="actions">
-                      <button cButton color="primary">
-                        <fa-icon [icon]="faEye"></fa-icon>
-                      </button>
-                      <button cButton color="danger">
-                        <fa-icon [icon]="faTrash"></fa-icon>
-                      </button>
-                    </c-button-group>
+                    {{program.location}}
                   </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <img src="../../../../assets/img/avatars/1.jpg" width="40" alt="" class="rounded">
-                  </th>
                   <td>
-                    Programme  villes neuves
-                  </td>
-                 
-                  <td>
-                    <c-badge color="danger">Suspendu</c-badge>
+                    <c-badge color="success">En cours</c-badge>
                   </td>
                   <td>
                     <c-button-group aria-label="Actions" role="group" class="actions">
@@ -72,73 +53,3 @@
     </c-col>
   </c-row>
 </div>
-
-<c-modal #addProgramModal backdrop="static" 
-  [visible]="modalVisible" [keyboard]="false" id="addProgramModal"
-  (visibleChange)="toggleModalVisibility($event)" scrollable alignment="center"
-  size="lg">
-  <c-modal-header>
-    <h5 cModalTitle>Ajouter un moyen de programme</h5>
-    <button [cModalToggle]="addProgramModal.id" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>
-    <div class="fade-in">
-      <c-row ngPreserveWhitespaces>
-        <c-col class="mb-4" xs="12">
-          <c-card>
-            <c-card-body>
-              <div class="w-100 img-section">
-                <strong>Ajouter des images</strong>
-                <app-image-upload  [options]="{}" [images]="[]" (imageLoader)="setImages($event)"></app-image-upload>
-              </div>
-              <div class="fields-section">
-                <form [formGroup]="programFrom">
-                  <c-row>
-                    <c-col xs="12" sm="12" md="6" lg="6">
-                      <div [cFormFloating]="true" class="mb-3">
-                        <input cFormControl id="programName" placeholder="Nom du programme" type="text" formControlName="name" />
-                        <label cLabel for="programName">Nom du programme</label>
-                      </div>
-                    </c-col>
-                    <c-col xs="12" sm="12" md="6" lg="6">
-                      <div [cFormFloating]="true" class="mb-3">
-                        <input cFormControl id="zone" placeholder="Zone" type="text" formControlName="zone" />
-                        <label cLabel for="zone">Zone</label>
-                      </div>
-                    </c-col>
-                    <c-col xs="12" sm="12" md="6" lg="6">
-                      <div [cFormFloating]="true" class="mb-3">
-                        <input cFormControl id="lat" placeholder="Lattitude" type="number" formControlName="lat" />
-                        <label cLabel for="lat">Lattitude</label>
-                      </div>
-                    </c-col>
-                    <c-col xs="12" sm="12" md="6" lg="6">
-                      <div [cFormFloating]="true" class="mb-3">
-                        <input cFormControl id="lng" placeholder="Longitude" type="number" formControlName="lng" />
-                        <label cLabel for="lng">Longitude</label>
-                      </div>
-                    </c-col>
-
-                    <!-- <c-col xs="12" sm="12" md="6" lg="6">
-                      <div [cFormFloating]="true" class="mb-3">
-                        <input cFormControl id="zone" placeholder="Zone" type="text"  />
-                        <label cLabel for="zone">Status</label>
-                      </div>
-                    </c-col> -->
-                  </c-row>
-                </form>
-              </div>
-            </c-card-body>
-          </c-card>
-        </c-col>
-      </c-row>
-    </div>
-  </c-modal-body>
-  <c-modal-footer class="text-center">
-    <button [cModalToggle]="addProgramModal.id" cButton color="warning"  class="white-c">
-      Fermer
-    </button>
-    <button cButton color="primary" size="lg"  class="white-c">Ajouter</button>
-  </c-modal-footer>
-</c-modal>
-

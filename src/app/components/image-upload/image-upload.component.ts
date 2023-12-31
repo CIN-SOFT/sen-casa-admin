@@ -43,8 +43,12 @@ export class ImageUploadComponent implements OnInit{
       const reader = new FileReader();
       reader.onloadend = () => {
           this.images.push(reader.result)
+          // if(reader.result)
+          //   console.log(btoa(reader.result.toString()))
       };
       reader.readAsDataURL(file);
+     // reader.readAsBinaryString(file)
+      //console.log(reader.result)
     }
     setTimeout(() => {
       if(this.images?.length > 0){

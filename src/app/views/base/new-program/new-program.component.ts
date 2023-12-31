@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgramForm } from '../../../types/programme';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BooleanInput } from '@angular/cdk/coercion';
+import Swal from 'sweetalert2';
+import { ProgramService } from 'src/app/services/program.service';
+import { Router } from '@angular/router';
+
 @Component({
   templateUrl: './new-program.component.html',
   styleUrls: ['./new-program.component.scss']
@@ -9,22 +12,53 @@ import { BooleanInput } from '@angular/cdk/coercion';
 export class NewProgramComponent implements OnInit {
 
   programFrom = new FormGroup({
-     id: new FormControl(undefined),
-     name: new FormControl('', Validators.required),
-     status: new FormControl(null),
-     image: new FormControl('', Validators.required)
+    id: new FormControl(undefined),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    location: new FormControl(null, Validators.required),
+    lat: new FormControl(null, Validators.required),
+    lng: new FormControl(null, Validators.required),
+    status: new FormControl(null),
+    principalImage: new FormControl('', Validators.required)
   });
   modalVisible: BooleanInput = false;
-  constructor() {}
+
+  constructor(private programService: ProgramService, private router: Router) {}
+
+  get name() { return this.programFrom.get('name'); }
+  get location() { return this.programFrom.get('location'); }
+  get lat() { return this.programFrom.get('lat'); }
+  get lng() { return this.programFrom.get('lng'); }
+  get principalImage() { return this.programFrom.get('principalImage'); }
 
   ngOnInit(): void {}
 
   setImages(event: any){
-   console.log(event)
-   this.programFrom.get('image')?.setValue(event);
+   this.programFrom.get('principalImage')?.setValue(event);
   }
 
-  handleVisibilityModal($event: boolean) {
-    this.modalVisible = $event;
+  checkFormField(){
+    if(this.programFrom.invalid){
+      console.log(this.programFrom)
+      this.programFrom.markAllAsTouched();
+      return;
+    }
+    Swal.fire({
+      title: "Voulez-vous vraiment ajouter ce programme ?",
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "OUI, je confirme",
+      denyButtonText: `Non, je modifie`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.programService.addNewProgram(this.programFrom.value);
+        this.programFrom.reset();
+        this.router.navigate(['/base/programs']);
+        
+        Swal.fire("Le programme é été ajouté avec succès et est maintenant visible!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Oupss! Une erreur est survenu mer", "", "info");
+      }
+    });
   }
 }

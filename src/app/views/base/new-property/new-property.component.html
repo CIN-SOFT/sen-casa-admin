@@ -6,131 +6,220 @@
           <strong>Ajouter un nouveau programme</strong>
         </c-card-header>
         <c-card-body>
-          <div class="w-100 img-section">
-            <strong>Ajouter des images <span class="red-color">*</span> </strong>
-            <app-image-upload  [options]="{}" [images]="[]" (imageLoader)="setImages($event)"></app-image-upload>
-          </div>
-          <div class="fields-section">
-            <c-row>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg">
-                  <option>Selectionner un programme <span class="red-color">*</span></option>
-                  <option value="1">Programme Jaaxay</option>
-                  <option value="2">Programme Keur gou bess</option>
-                </select>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="location" placeholder="Zone" type="text" readonly/>
-                  <label cLabel for="location">Zone<span class="red-color">*</span></label>
-                </div>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="lat" placeholder="Lattitude" type="text" readonly/>
-                  <label cLabel for="lat">Lattitude </label>
-                </div>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="lng" placeholder="Longitude" type="text" readonly/>
-                  <label cLabel for="lng">Longitude</label>
-                </div>
-              </c-col>
-              
-             
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="superficie" placeholder="Superficie" type="text" />
-                  <label cLabel for="superficie">Superficie <span class="red-color">*</span></label>
-                </div>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                  <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg">
-                    <option>S&eacute;lectionner un type <span class="red-color">*</span></option>
-                    <option value="1">Maison</option>
-                    <option value="2">Villa</option>
-                    <option value="3">Appartement</option>
-                    <option value="">Terrain</option>
+          <form [formGroup]="propertyForm" (ngSubmit)="checkFormFields()">
+            <div class="w-100 img-section">
+              <strong>Ajouter des images <span class="red-color">*</span> </strong>
+              <div
+                      *ngIf="
+                        propertyForm.get('principalImage')?.invalid &&
+                        (propertyForm.get('principalImage')?.dirty || propertyForm.get('principalImage')?.touched)
+                      "
+                      class="red-color"
+                    >
+                      <div *ngIf="propertyForm.get('principalImage')?.errors?.['required']">
+                        Merci de rajouter des images
+                      </div>
+                    </div>
+              <app-image-upload  [options]="{width: 80}" [images]="[]" (imageLoader)="setImages($event)"></app-image-upload>
+            </div>
+            <div class="fields-section">
+              <c-row>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <select formControlName="programId" aria-label="Type" cSelect class="mb-3 form-select" sizing="lg" (change)="getSelectedProgram($event.target)">
+                    <option [value]="null">Selectionner un programme <span class="red-color">*</span></option>
+                    <option value="{{pr.name}}" *ngFor="let pr of programs">{{pr.name}}</option>
                   </select>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="bed" placeholder="Chambres" type="number" />
-                  <label cLabel for="bed">Chambres <span class="red-color">*</span></label>
-                </div>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="bath" placeholder="Salles de bain" type="text" />
-                  <label cLabel for="bath">Salles de bain <span class="red-color">*</span></label>
-                </div>
-              </c-col>
+                  <div
+                      *ngIf="
+                        propertyForm.get('programId')?.invalid &&
+                        (propertyForm.get('programId')?.dirty || propertyForm.get('programId')?.touched)
+                      "
+                      class="red-color"
+                    >
+                      <div *ngIf="propertyForm.get('programId')?.errors?.['required']">
+                        Merci de choisir un programme
+                      </div>
+                    </div>
+                </c-col>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="location" placeholder="Zone" type="text" formControlName="location" readonly />
+                    <label cLabel for="location">Zone<span class="red-color">*</span></label>
+                  </div>
+                </c-col>
+                <!-- <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="lat" placeholder="Lattitude" type="text" readonly/>
+                    <label cLabel for="lat">Lattitude </label>
+                  </div>
+                </c-col>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="lng" placeholder="Longitude" type="text" readonly/>
+                    <label cLabel for="lng">Longitude</label>
+                  </div>
+                </c-col> -->
+                
+              
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="superficie" placeholder="Superficie" type="text" formControlName="area" />
+                    <label cLabel for="superficie">Superficie <span class="red-color">*</span></label>
+                    <div
+                    *ngIf="
+                      propertyForm.get('area')?.invalid &&
+                      (propertyForm.get('area')?.dirty || propertyForm.get('area')?.touched)
+                    "
+                    class="red-color"
+                  >
+                    <div *ngIf="propertyForm.get('area')?.errors?.['required']">
+                      La superficie est requise
+                    </div>
+                  </div>
+                  </div>
+                </c-col>
+                <!-- <c-col xs="12" sm="12" md="6" lg="6">
+                    <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg">
+                      <option>S&eacute;lectionner un type <span class="red-color">*</span></option>
+                      <option value="1">Maison</option>
+                      <option value="2">Villa</option>
+                      <option value="3">Appartement</option>
+                      <option value="">Terrain</option>
+                    </select>
+                </c-col> -->
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="bed" placeholder="Chambres" type="number" formControlName="bed" />
+                    <label cLabel for="bed">Chambres <span class="red-color">*</span></label>
+                    <div
+                    *ngIf="
+                      propertyForm.get('bed')?.invalid &&
+                      (propertyForm.get('bed')?.dirty || propertyForm.get('bed')?.touched)
+                    "
+                    class="red-color"
+                  >
+                    <div *ngIf="propertyForm.get('bed')?.errors?.['required']">
+                      Merci de préciser le nombre de chambres
+                    </div>
+                  </div>
+                  </div>
+                </c-col>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="bath" placeholder="Salles de bain" type="number" formControlName="bath" />
+                    <label cLabel for="bath">Salles de bain <span class="red-color">*</span></label>
+                    <div
+                    *ngIf="
+                      propertyForm.get('bath')?.invalid &&
+                      (propertyForm.get('bath')?.dirty || propertyForm.get('bath')?.touched)
+                    "
+                    class="red-color"
+                  >
+                    <div *ngIf="propertyForm.get('bath')?.errors?.['required']">
+                      Merci de préciser le nombre de salles de bain
+                    </div>
+                  </div>
+                  </div>
+                </c-col>
 
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="totalPrice" placeholder="Prix total (HT)" type="text" />
-                  <label cLabel for="totalPrice">Prix total (HT) <span class="red-color">*</span></label>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="totalPrice" placeholder="Prix total (HT)" type="number" formControlName="price" />
+                    <label cLabel for="totalPrice">Prix total (HT) <span class="red-color">*</span></label>
+                    <div
+                    *ngIf="
+                      propertyForm.get('price')?.invalid &&
+                      (propertyForm.get('price')?.dirty || propertyForm.get('price')?.touched)
+                    "
+                    class="red-color"
+                  >
+                    <div *ngIf="propertyForm.get('price')?.errors?.['required']">
+                      Le montant HT est requis
+                    </div>
+                  </div>
+                  </div>
+                </c-col>
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="minimumSave" placeholder="Epargne minimum" type="number" formControlName="minimumSave">
+                    <label cLabel for="minimumSave">Epargne minimum <span class="red-color">*</span></label>
+                    <div
+                    *ngIf="
+                      propertyForm.get('minimumSave')?.invalid &&
+                      (propertyForm.get('minimumSave')?.dirty || propertyForm.get('minimumSave')?.touched)
+                    "
+                    class="red-color"
+                  >
+                    <div *ngIf="propertyForm.get('minimumSave')?.errors?.['required']">
+                      L'épargne minimum est requise
+                    </div>
+                  </div>
+                  </div>
+                </c-col>
+                <!-- <c-col xs="12" sm="12" md="6" lg="6">
+                  <div [cFormFloating]="true" class="mb-3">
+                    <input cFormControl id="chambre" placeholder="Versement minimum (souscription)" type="text" />
+                    <label cLabel for="chambre">Versement minimum (souscription) <span class="red-color">*</span></label>
+                  </div>
+                </c-col> -->
+                <c-col xs="12" sm="12" md="6" lg="6">
+                  <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg" formControlName="paymentDuration">
+                    <option [value]="null">Dur&eacute;e de paiement <span class="red-color">*</span></option>
+                    <option value="1">6 mois</option>
+                    <option value="2">12 mois</option>
+                    <option value="3">18 mois</option>
+                    <option value="6">24 mois</option>
+                    <option value="7">32 mois</option>
+                    <option value="6">48 mois</option>
+                    <option value="6">56 mois</option>
+                  </select>
+                  <div
+                  *ngIf="
+                    propertyForm.get('paymentDuration')?.invalid &&
+                    (propertyForm.get('paymentDuration')?.dirty || propertyForm.get('paymentDuration')?.touched)
+                  "
+                  class="red-color"
+                >
+                  <div *ngIf="propertyForm.get('paymentDuration')?.errors?.['required']">
+                    Merci de choisir la durée de paiement du bien immobilier
+                  </div>
                 </div>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="minimumSave" placeholder="Epargne minimum" type="text" />
-                  <label cLabel for="minimumSave">Epargne minimum <span class="red-color">*</span></label>
+                </c-col>
+              </c-row>
+            
+              <c-row>
+                <c-col size="12">
+                  <div class="mb-4 mt-3">
+                    <strong class="mb-3">Description <span class="red-color">*</span></strong>
+                  </div>
+                  <editor [init]="{
+                    base_url: '/tinymce', 
+                    suffix: '.min'   
+                  }"
+                  formControlName="description" ></editor>
+                  <div
+                  *ngIf="
+                    propertyForm.get('description')?.invalid &&
+                    (propertyForm.get('description')?.dirty || propertyForm.get('description')?.touched)
+                  "
+                  class="red-color"
+                >
+                  <div *ngIf="propertyForm.get('description')?.errors?.['required']">
+                    La description est requise
+                  </div>
                 </div>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="chambre" placeholder="Versement minimum (souscription)" type="text" />
-                  <label cLabel for="chambre">Versement minimum (souscription) <span class="red-color">*</span></label>
-                </div>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg">
-                  <option>Dur&eacute;e de paiement <span class="red-color">*</span></option>
-                  <option value="1">6 mois</option>
-                  <option value="2">12 mois</option>
-                  <option value="3">18 mois</option>
-                  <option value="6">24 mois</option>
-                  <option value="7">32 mois</option>
-                  <option value="6">48 mois</option>
-                  <option value="6">56 mois</option>
-                </select>
-              </c-col>
-              <!-- <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="chambre" placeholder="Chambres" type="text" />
-                  <label cLabel for="chambre">Chambres</label>
-                </div>
-              </c-col>
-              <c-col xs="12" sm="12" md="6" lg="6">
-                <div [cFormFloating]="true" class="mb-3">
-                  <input cFormControl id="bath" placeholder="Salle de bain" type="text" />
-                  <label cLabel for="bath">Salle de bain</label>
-                </div>
-              </c-col> -->
-            </c-row>
-           
-            <c-row>
-              <c-col size="12">
-                <div class="mb-4 mt-3">
-                  <strong class="mb-3">Description <span class="red-color">*</span></strong>
-                </div>
-                <editor [init]="{
-                  base_url: '/tinymce', 
-                  suffix: '.min'        
-                }"></editor>
-              </c-col>
-            </c-row>
-            <c-row class="mt-5 d-flex">
-              <button cButton class="mb-3 main-btn" color="danger" size="lg" [routerLink]="['/base/properties']">
-                Retour
-              </button>
-              <button cButton class="mb-3 main-btn" color="primary" size="lg">
-                Ajouter
-              </button>
-            </c-row>
-          </div>
+                </c-col>
+              </c-row>
+              <c-row class="mt-5 d-flex">
+                <button cButton class="mb-3 main-btn" color="danger" size="lg" [routerLink]="['/base/properties']">
+                  Retour
+                </button>
+                <button cButton class="mb-3 main-btn" color="primary" size="lg" type="submit">
+                  Ajouter
+                </button>
+              </c-row>
+            </div>
+          </form>
         </c-card-body>
       </c-card>
     </c-col>

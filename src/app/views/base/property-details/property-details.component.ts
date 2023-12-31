@@ -7,11 +7,12 @@ import { Property } from '../../../interfaces/property.interface';
 })
 
 export class PropertyDetailsComponent implements OnInit {
-    property: Property = {};
+    property: Property | undefined;
     activeIndex: number = 0;
     constructor() {}
 
-    ngOnInit() { 
+    ngOnInit() {
+        if(!this.property) return;
         this.property.images = [
             '../../../../assets/images/hero/hero-slider-1.jpg',
             '../../../../assets/images/hero/hero-slider-2.jpg',

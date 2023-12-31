@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEye, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { Program } from 'src/app/interfaces/program.interface';
+import { Property } from 'src/app/interfaces/property.interface';
+import { ProgramService } from 'src/app/services/program.service';
+import { PropertyService } from 'src/app/services/property.service';
 
 @Component({
   templateUrl: './properties.component.html',
@@ -11,9 +15,31 @@ export class PropertiesComponent implements OnInit {
   faTrash = faTrashCan;
   faPlus = faPlus;
   modalModalDetailsVisible: boolean = false;
-  constructor(private router: Router) {}
+  programs: Program[] = [];
+  properties: Property[] = [];
+  
+  constructor(private router: Router, private programService: ProgramService, private propertyService: PropertyService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getPrograms()
+    this.getProperties()
+  }
+
+  getPrograms(){
+    this.programService.getAllPrograms().subscribe({
+      next: (resp: any) => {
+        this.programs = resp;
+      }
+    })
+  }
+
+  getProperties(){
+    this.propertyService.getProperties().subscribe({
+      next: (resp: any) => {
+        this.properties = resp;
+      }
+    })
+  }
 
   setImages(event: any){
    console.log(event)

@@ -42,6 +42,8 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { TransactionService } from './services/transaction.service';
+import { ProgramService } from './services/program.service';
+import { PropertyService } from './services/property.service';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -88,7 +90,9 @@ const APP_CONTAINERS = [
     },
     IconSetService,
     Title,
-    TransactionService
+    TransactionService,
+    ProgramService,
+    PropertyService
   ],
   bootstrap: [AppComponent],
 })
