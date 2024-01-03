@@ -44,6 +44,7 @@ import { RolesComponent } from './roles/roles.component';
 import { ZonesComponent } from './zones/zones.component';
 
 import { CustomSharedModule } from '../../shared/shared.module';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   imports: [
@@ -88,7 +89,8 @@ import { CustomSharedModule } from '../../shared/shared.module';
   declarations: [
     PaymentMethodComponent,
     RolesComponent,
-    ZonesComponent
+    ZonesComponent,
+    UsersComponent
   ],
   providers: [
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }

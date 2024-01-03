@@ -23,13 +23,13 @@
               <tbody>
                 <tr *ngFor="let program of programs">
                   <th scope="row">
-                    <img [src]="program.principalImage?.at(0)" width="40" alt="" class="rounded">
+                    <img [src]="program?.main_image" width="40" alt="" class="rounded">
                   </th>
                   <td>
-                    <b>{{program.name}}</b>
+                    <b>{{program?.name}}</b>
                   </td>
                   <td>
-                    {{program.location}}
+                    {{program?.location}}
                   </td>
                   <td>
                     <c-badge color="success">En cours</c-badge>

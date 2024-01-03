@@ -15,7 +15,7 @@
               <tr>
                 <th scope="col">Miniature</th>
                 <th scope="col">Numero Maison</th>
-                <th scope="col">Zone</th>
+                <th scope="col">Superficie</th>
                 <th scope="col">Prix</th>
                 <th scope="col">Beneficiaire</th>
                 <th scope="col">Statut</th>
@@ -25,13 +25,13 @@
               <tbody>
                 <tr *ngFor="let prop of properties; let i = index">
                   <th scope="row">
-                    <img [src]="prop.principalImage" width="40" alt="" class="rounded">
+                    <img [src]="prop?.main_image" width="60" alt="" class="rounded">
                   </th>
                   <td>
-                    Numero  {{i + 1}}
+                    Numero {{prop?.property_number}}
                   </td>
                   <td>
-                    {{prop.location}}
+                    {{prop.area}} m<sup>2</sup>
                   </td>
                   <td>
                     {{prop.price}} FCFA

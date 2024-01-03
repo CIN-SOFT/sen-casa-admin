@@ -1,30 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PropertyService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   addNewProperty(property: any){
-    let properties = [];
-    let storageProp = localStorage.getItem('casa-properties');
-    if(storageProp){
-      properties = JSON.parse(storageProp);
-    }
-    properties.push(property);
-    localStorage.setItem('casa-properties', JSON.stringify(properties));
+    return this.http.post(`${environment.apiUrl}casa/properties`, property).pipe(response => response);
   }
 
   getProperties(){
-    let storageProperties = localStorage.getItem('casa-properties');
-    let properties = [];
-    if(storageProperties){
-      properties = JSON.parse(storageProperties);
-    }
-    return of(properties);
+    return this.http.get(`${environment.apiUrl}casa/properties`).pipe(response => response);
   }
 }

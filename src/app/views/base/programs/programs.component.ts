@@ -26,8 +26,7 @@ export class ProgramsComponent implements OnInit {
   getPrograms(){
     this.programService.getAllPrograms().subscribe({
       next: (resp: any) => {
-        console.log(resp)
-        this.programs = resp;
+        this.programs = resp.data;
       }
     })
   }

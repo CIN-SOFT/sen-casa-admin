@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
 export class NewProgramComponent implements OnInit {
 
   programFrom = new FormGroup({
-    id: new FormControl(undefined),
+   // id: new FormControl(undefined),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     location: new FormControl(null, Validators.required),
     lat: new FormControl(null, Validators.required),
     lng: new FormControl(null, Validators.required),
-    status: new FormControl(null),
-    principalImage: new FormControl('', Validators.required)
+    status: new FormControl('active'),
+    images: new FormControl('', Validators.required)
   });
   modalVisible: BooleanInput = false;
 
@@ -33,7 +33,7 @@ export class NewProgramComponent implements OnInit {
   ngOnInit(): void {}
 
   setImages(event: any){
-   this.programFrom.get('principalImage')?.setValue(event);
+   this.programFrom.get('images')?.setValue(event);
   }
 
   checkFormField(){
@@ -51,14 +51,19 @@ export class NewProgramComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.programService.addNewProgram(this.programFrom.value);
-        this.programFrom.reset();
-        this.router.navigate(['/base/programs']);
+        this.programService.addNewProgram(this.programFrom.value).subscribe({
+          next: (resp: any) => {
+            this.programFrom.reset();
+            Swal.fire("Le programme é été ajouté avec succès et est maintenant visible!", "", "success");
+            this.router.navigate(['/base/programs']);
+          },
+          error: (error) => {
+            console.log(error)
+            Swal.fire("Oupss! Une erreur est survenu mer", "", "info");
+          }
+        })
         
-        Swal.fire("Le programme é été ajouté avec succès et est maintenant visible!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Oupss! Une erreur est survenu mer", "", "info");
-      }
+      } 
     });
   }
 }

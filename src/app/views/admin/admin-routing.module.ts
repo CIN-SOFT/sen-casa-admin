@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PaymentMethodComponent } from './payment-method/programs.component';
 import { RolesComponent } from './roles/roles.component';
 import { ZonesComponent } from './zones/zones.component';
-
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
@@ -23,6 +23,10 @@ const routes: Routes = [
       {
         path: 'zones',
         component: ZonesComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent
       }
     ],
   },

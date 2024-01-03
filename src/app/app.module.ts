@@ -44,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TransactionService } from './services/transaction.service';
 import { ProgramService } from './services/program.service';
 import { PropertyService } from './services/property.service';
+import { UserService } from './services/user.service';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -92,7 +93,8 @@ const APP_CONTAINERS = [
     Title,
     TransactionService,
     ProgramService,
-    PropertyService
+    PropertyService,
+    UserService
   ],
   bootstrap: [AppComponent],
 })

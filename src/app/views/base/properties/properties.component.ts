@@ -16,7 +16,7 @@ export class PropertiesComponent implements OnInit {
   faPlus = faPlus;
   modalModalDetailsVisible: boolean = false;
   programs: Program[] = [];
-  properties: Property[] = [];
+  properties: any[] = [];
   
   constructor(private router: Router, private programService: ProgramService, private propertyService: PropertyService) {}
 
@@ -28,7 +28,7 @@ export class PropertiesComponent implements OnInit {
   getPrograms(){
     this.programService.getAllPrograms().subscribe({
       next: (resp: any) => {
-        this.programs = resp;
+        this.programs = resp.data;
       }
     })
   }
@@ -36,7 +36,7 @@ export class PropertiesComponent implements OnInit {
   getProperties(){
     this.propertyService.getProperties().subscribe({
       next: (resp: any) => {
-        this.properties = resp;
+        this.properties = resp.data;
       }
     })
   }

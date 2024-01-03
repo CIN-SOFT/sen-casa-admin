@@ -12,17 +12,18 @@ import Swal from 'sweetalert2';
 })
 export class NewPropertyComponent implements OnInit {
   propertyForm: FormGroup = new FormGroup({
-    programId: new FormControl(null, [Validators.required]),
+    casa_programs_id: new FormControl(null, [Validators.required]),
+    property_number: new FormControl(null, [Validators.required]),
     location: new FormControl(null, [Validators.required]),
     area: new FormControl(null, [Validators.required]),
     bed: new FormControl(null, [Validators.required]),
     bath: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
-    minimumSave: new FormControl(null, [Validators.required]),
-    paymentDuration: new FormControl(null, [Validators.required]),
-    planImage: new FormControl(null, [Validators.required]),
-    principalImage: new FormControl(null, [Validators.required]),
-    otherImages: new FormControl([], [Validators.required]),
+    minimum_save: new FormControl(null, [Validators.required]),
+    payment_duration: new FormControl(null, [Validators.required]),
+    planImage: new FormControl(null),
+    principalImage: new FormControl(null),
+    images: new FormControl([], [Validators.required]),
     description: new FormControl(null, [Validators.required])
   });
 
@@ -37,15 +38,14 @@ export class NewPropertyComponent implements OnInit {
   getPrograms(){
     this.programService.getAllPrograms().subscribe({
       next: (resp: any) => {
-        console.log(resp)
-        this.programs = resp;
+        this.programs = resp.data;
       }
     })
   }
 
   getSelectedProgram(event: any){
    this.propertyForm.get('location')?.setValue(this.programs.find(p => {
-      return p.name.toLowerCase() == this.propertyForm.get('programId')?.value.toLowerCase()
+      return p.id == this.propertyForm.get('casa_programs_id')?.value
     })?.location);
   }
 
@@ -55,7 +55,7 @@ export class NewPropertyComponent implements OnInit {
    this.propertyForm.get('planImage')?.setValue(otherImages.pop())
    this.propertyForm.get('principalImage')?.setValue(otherImages.shift())
    
-   this.propertyForm.get('otherImages')?.setValue(otherImages)
+   this.propertyForm.get('images')?.setValue(event)
   }
 
   checkFormFields(){
@@ -72,13 +72,17 @@ export class NewPropertyComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.propertyService.addNewProperty(this.propertyForm.value);
-        this.propertyForm.reset();
-        this.router.navigate(['/base/properties']);
-        
-        Swal.fire("L'ajout a été ajouté avec succès et est maintenant visible!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Oupss! Une erreur est survenu mer", "", "info");
+        this.propertyService.addNewProperty(this.propertyForm.value).subscribe({
+          next: (resp: any) => {
+            Swal.fire("L'ajout a été ajouté avec succès et est maintenant visible!", "", "success");
+            this.propertyForm.reset();
+            this.router.navigate(['/base/properties']);
+          },
+          error: () => {
+            Swal.fire("Oupss! Une erreur est survenu mer", "", "info");
+          }
+        })
+
       }
     });
   }

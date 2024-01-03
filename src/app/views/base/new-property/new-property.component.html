@@ -11,12 +11,12 @@
               <strong>Ajouter des images <span class="red-color">*</span> </strong>
               <div
                       *ngIf="
-                        propertyForm.get('principalImage')?.invalid &&
-                        (propertyForm.get('principalImage')?.dirty || propertyForm.get('principalImage')?.touched)
+                        propertyForm.get('images')?.invalid &&
+                        (propertyForm.get('images')?.dirty || propertyForm.get('images')?.touched)
                       "
                       class="red-color"
                     >
-                      <div *ngIf="propertyForm.get('principalImage')?.errors?.['required']">
+                      <div *ngIf="propertyForm.get('images')?.errors?.['required']">
                         Merci de rajouter des images
                       </div>
                     </div>
@@ -25,18 +25,18 @@
             <div class="fields-section">
               <c-row>
                 <c-col xs="12" sm="12" md="6" lg="6">
-                  <select formControlName="programId" aria-label="Type" cSelect class="mb-3 form-select" sizing="lg" (change)="getSelectedProgram($event.target)">
+                  <select formControlName="casa_programs_id" aria-label="Type" cSelect class="mb-3 form-select" sizing="lg" (change)="getSelectedProgram($event.target)">
                     <option [value]="null">Selectionner un programme <span class="red-color">*</span></option>
-                    <option value="{{pr.name}}" *ngFor="let pr of programs">{{pr.name}}</option>
+                    <option value="{{pr.id}}" *ngFor="let pr of programs">{{pr.name}}</option>
                   </select>
                   <div
                       *ngIf="
-                        propertyForm.get('programId')?.invalid &&
-                        (propertyForm.get('programId')?.dirty || propertyForm.get('programId')?.touched)
+                        propertyForm.get('casa_programs_id')?.invalid &&
+                        (propertyForm.get('casa_programs_id')?.dirty || propertyForm.get('programId')?.touched)
                       "
                       class="red-color"
                     >
-                      <div *ngIf="propertyForm.get('programId')?.errors?.['required']">
+                      <div *ngIf="propertyForm.get('casa_programs_id')?.errors?.['required']">
                         Merci de choisir un programme
                       </div>
                     </div>
@@ -47,19 +47,24 @@
                     <label cLabel for="location">Zone<span class="red-color">*</span></label>
                   </div>
                 </c-col>
-                <!-- <c-col xs="12" sm="12" md="6" lg="6">
-                  <div [cFormFloating]="true" class="mb-3">
-                    <input cFormControl id="lat" placeholder="Lattitude" type="text" readonly/>
-                    <label cLabel for="lat">Lattitude </label>
-                  </div>
-                </c-col>
+
                 <c-col xs="12" sm="12" md="6" lg="6">
                   <div [cFormFloating]="true" class="mb-3">
-                    <input cFormControl id="lng" placeholder="Longitude" type="text" readonly/>
-                    <label cLabel for="lng">Longitude</label>
+                    <input cFormControl id="property_number" placeholder="Numero de la maison" type="number" formControlName="property_number" />
+                    <label cLabel for="property_number">Numero de la maison <span class="red-color">*</span></label>
+                    <div
+                    *ngIf="
+                      propertyForm.get('property_number')?.invalid &&
+                      (propertyForm.get('property_number')?.dirty || propertyForm.get('property_number')?.touched)
+                    "
+                    class="red-color"
+                  >
+                    <div *ngIf="propertyForm.get('property_number')?.errors?.['required']">
+                      Le numero de la maison est requis
+                    </div>
                   </div>
-                </c-col> -->
-                
+                  </div>
+                </c-col>
               
                 <c-col xs="12" sm="12" md="6" lg="6">
                   <div [cFormFloating]="true" class="mb-3">
@@ -78,15 +83,7 @@
                   </div>
                   </div>
                 </c-col>
-                <!-- <c-col xs="12" sm="12" md="6" lg="6">
-                    <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg">
-                      <option>S&eacute;lectionner un type <span class="red-color">*</span></option>
-                      <option value="1">Maison</option>
-                      <option value="2">Villa</option>
-                      <option value="3">Appartement</option>
-                      <option value="">Terrain</option>
-                    </select>
-                </c-col> -->
+
                 <c-col xs="12" sm="12" md="6" lg="6">
                   <div [cFormFloating]="true" class="mb-3">
                     <input cFormControl id="bed" placeholder="Chambres" type="number" formControlName="bed" />
@@ -141,16 +138,16 @@
                 </c-col>
                 <c-col xs="12" sm="12" md="6" lg="6">
                   <div [cFormFloating]="true" class="mb-3">
-                    <input cFormControl id="minimumSave" placeholder="Epargne minimum" type="number" formControlName="minimumSave">
-                    <label cLabel for="minimumSave">Epargne minimum <span class="red-color">*</span></label>
+                    <input cFormControl id="minimum_save" placeholder="Epargne minimum" type="number" formControlName="minimum_save">
+                    <label cLabel for="minimum_save">Epargne minimum <span class="red-color">*</span></label>
                     <div
                     *ngIf="
-                      propertyForm.get('minimumSave')?.invalid &&
-                      (propertyForm.get('minimumSave')?.dirty || propertyForm.get('minimumSave')?.touched)
+                      propertyForm.get('minimum_save')?.invalid &&
+                      (propertyForm.get('minimum_save')?.dirty || propertyForm.get('minimum_save')?.touched)
                     "
                     class="red-color"
                   >
-                    <div *ngIf="propertyForm.get('minimumSave')?.errors?.['required']">
+                    <div *ngIf="propertyForm.get('minimum_save')?.errors?.['required']">
                       L'épargne minimum est requise
                     </div>
                   </div>
@@ -163,7 +160,7 @@
                   </div>
                 </c-col> -->
                 <c-col xs="12" sm="12" md="6" lg="6">
-                  <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg" formControlName="paymentDuration">
+                  <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg" formControlName="payment_duration">
                     <option [value]="null">Dur&eacute;e de paiement <span class="red-color">*</span></option>
                     <option value="1">6 mois</option>
                     <option value="2">12 mois</option>
@@ -175,12 +172,12 @@
                   </select>
                   <div
                   *ngIf="
-                    propertyForm.get('paymentDuration')?.invalid &&
-                    (propertyForm.get('paymentDuration')?.dirty || propertyForm.get('paymentDuration')?.touched)
+                    propertyForm.get('payment_duration')?.invalid &&
+                    (propertyForm.get('payment_duration')?.dirty || propertyForm.get('payment_duration')?.touched)
                   "
                   class="red-color"
                 >
-                  <div *ngIf="propertyForm.get('paymentDuration')?.errors?.['required']">
+                  <div *ngIf="propertyForm.get('payment_duration')?.errors?.['required']">
                     Merci de choisir la durée de paiement du bien immobilier
                   </div>
                 </div>

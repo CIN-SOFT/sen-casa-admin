@@ -1,31 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgramService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   addNewProgram(newProgram: any){
-    let programs = [];
-    let storageProgram = localStorage.getItem('casa-program');
-    if(storageProgram){
-      programs = JSON.parse(storageProgram);
-    }
-    programs.push(newProgram);
-    console.log(programs)
-    localStorage.setItem('casa-program', JSON.stringify(programs));
+   return this.http.post(`${environment.apiUrl}casa/program`, newProgram).pipe(response => response);
   }
 
   getAllPrograms(page: number = 1, itemPerPage: number = 50){
-    let storageProgram = localStorage.getItem('casa-program');
-    let programs = [];
-    if(storageProgram){
-      programs = JSON.parse(storageProgram);
-    }
-    return of(programs);
+    return this.http.get(`${environment.apiUrl}casa/program`).pipe(response => response);
   }
 }
