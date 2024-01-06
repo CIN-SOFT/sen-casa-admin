@@ -34,19 +34,17 @@
               </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">
-                    22/11/2023
-                  </th>
+                <tr *ngFor="let sub of subscriptions">
                   <td>
-                    Aliou Diouf
+                    {{sub?.created_at | date: 'dd mm yyyy'}}
                   </td>
                   <td>
-                    Yaaxanal
+                    {{sub?.client?.first_name}} - {{sub?.client?.last_name}}
                   </td>
                   <td>
-                    En cours
+                    {{sub?.program?.name}} 
                   </td>
+                  
                   <td>
                     5.006.000 FCFA
                   </td>
@@ -64,7 +62,6 @@
                     </c-button-group>
                   </td>
                 </tr>
-              
              </tbody>
           </table>
         </c-card-body>
@@ -72,22 +69,3 @@
     </c-col>
   </c-row>
 </div>
-
-
-<!-- modal account details -->
-<c-modal #userDetailsModal backdrop="static" 
-  [visible]="modalVisible" [keyboard]="false" id="userDetails"
-  (visibleChange)="handleVisibilityModal($event)" scrollable alignment="center" 
-  size="xl">
-  <c-modal-header>
-    <h5 cModalTitle>Modal title</h5>
-    <button [cModalToggle]="userDetailsModal.id" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>Woohoo, you&#39;re reading this text in a modal!</c-modal-body>
-  <c-modal-footer>
-    <button [cModalToggle]="userDetailsModal.id" cButton color="secondary">
-      Fermer
-    </button>
-    <button cButton color="primary">Understood</button>
-  </c-modal-footer>
-</c-modal>

@@ -16,4 +16,8 @@ export class UserService {
   addUser(user: any){
     return this.http.post(`${environment.apiUrl}casa/users`, user).pipe(response => response);
   }
+
+  getAllClientAccount(){
+    return this.http.get(`${environment.apiUrl}casa/client/account`).pipe(response => response);
+  }
 }

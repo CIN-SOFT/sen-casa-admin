@@ -14,15 +14,15 @@ export class NewPropertyComponent implements OnInit {
   propertyForm: FormGroup = new FormGroup({
     casa_programs_id: new FormControl(null, [Validators.required]),
     property_number: new FormControl(null, [Validators.required]),
-    location: new FormControl(null, [Validators.required]),
+    //location: new FormControl(null, [Validators.required]),
     area: new FormControl(null, [Validators.required]),
-    bed: new FormControl(null, [Validators.required]),
-    bath: new FormControl(null, [Validators.required]),
+    //bed: new FormControl(null, [Validators.required]),
+  //  bath: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
-    minimum_save: new FormControl(null, [Validators.required]),
-    payment_duration: new FormControl(null, [Validators.required]),
-    planImage: new FormControl(null),
-    principalImage: new FormControl(null),
+   // minimum_save: new FormControl(null, [Validators.required]),
+    //payment_duration: new FormControl(null, [Validators.required]),
+   // planImage: new FormControl(null),
+    //principalImage: new FormControl(null),
     images: new FormControl([], [Validators.required]),
     description: new FormControl(null, [Validators.required])
   });
@@ -44,9 +44,9 @@ export class NewPropertyComponent implements OnInit {
   }
 
   getSelectedProgram(event: any){
-   this.propertyForm.get('location')?.setValue(this.programs.find(p => {
-      return p.id == this.propertyForm.get('casa_programs_id')?.value
-    })?.location);
+  //  this.propertyForm.get('location')?.setValue(this.programs.find(p => {
+  //     return p.id == this.propertyForm.get('casa_programs_id')?.value
+  //   })?.location);
   }
 
   setImages(event: any){

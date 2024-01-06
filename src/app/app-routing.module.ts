@@ -65,11 +65,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/notifications/notifications.module').then((m) => m.NotificationsModule)
       },
-      {
-        path: 'widgets',
-        loadChildren: () =>
-          import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
-      },
+      // {
+      //   path: 'widgets',
+      //   loadChildren: () =>
+      //     import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
+      // },
       {
         path: 'pages',
         loadChildren: () =>

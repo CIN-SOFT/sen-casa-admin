@@ -154,11 +154,11 @@ export const navItems: INavData[] = [
       // }
    // ]
   },
-  {
-    name: 'Statistiques',
-    url: '/charts',
-    iconComponent: { name: 'cil-chart-pie' }
-  },
+  // {
+  //   name: 'Statistiques',
+  //   url: '/charts',
+  //   iconComponent: { name: 'cil-chart-pie' }
+  // },
   // {
   //   name: '',
   //   iconComponent: { name: 'cil-star' },

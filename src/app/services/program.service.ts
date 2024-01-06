@@ -17,4 +17,8 @@ export class ProgramService {
   getAllPrograms(page: number = 1, itemPerPage: number = 50){
     return this.http.get(`${environment.apiUrl}casa/program`).pipe(response => response);
   }
+
+  getAllSubscription(page: number = 1, itemPerPage: number = 50){
+    return this.http.get(`${environment.apiUrl}casa/subscription/all`).pipe(response => response);
+  }
 }

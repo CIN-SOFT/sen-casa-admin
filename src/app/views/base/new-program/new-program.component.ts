@@ -17,6 +17,10 @@ export class NewProgramComponent implements OnInit {
     location: new FormControl(null, Validators.required),
     lat: new FormControl(null, Validators.required),
     lng: new FormControl(null, Validators.required),
+    minimum_save: new FormControl(null, Validators.required),
+    solde: new FormControl(null, Validators.required),
+    duration: new FormControl(null, Validators.required),
+    description: new FormControl(null, Validators.required),
     status: new FormControl('active'),
     images: new FormControl('', Validators.required)
   });
@@ -28,6 +32,10 @@ export class NewProgramComponent implements OnInit {
   get location() { return this.programFrom.get('location'); }
   get lat() { return this.programFrom.get('lat'); }
   get lng() { return this.programFrom.get('lng'); }
+  get minimum_save() { return this.programFrom.get('minimum_save'); }
+  get solde() { return this.programFrom.get('solde'); }
+  get duration() { return this.programFrom.get('duration'); }
+  get description() { return this.programFrom.get('description'); }
   get principalImage() { return this.programFrom.get('principalImage'); }
 
   ngOnInit(): void {}
