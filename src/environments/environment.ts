@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://api-sama-keur.cin-soft.com/api/',
+    apiUrl: 'https://api-sama-keur.cin-soft.com/api/',
 };
