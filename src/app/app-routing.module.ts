@@ -10,11 +10,11 @@ import { RegisterComponent } from './views/pages/register/register.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: '',
+    path: 'admin',
     component: DefaultLayoutComponent,
     data: {
       title: 'Accueil'
@@ -36,7 +36,7 @@ const routes: Routes = [
           import('./views/base/base.module').then((m) => m.BaseModule)
       },
       {
-        path: 'admin',
+        path: 'parameters',
         loadChildren: () =>
           import('./views/admin/admin.module').then((m) => m.AdminModule)
       },
@@ -65,11 +65,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/notifications/notifications.module').then((m) => m.NotificationsModule)
       },
-      // {
-      //   path: 'widgets',
-      //   loadChildren: () =>
-      //     import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
-      // },
+
       {
         path: 'pages',
         loadChildren: () =>
@@ -105,7 +101,7 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  {path: '**', redirectTo: 'dashboard'}
+  { path: '**', redirectTo: 'login'}
 ];
 
 @NgModule({

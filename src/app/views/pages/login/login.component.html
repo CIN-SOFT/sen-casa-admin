@@ -5,14 +5,14 @@
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>
-              <form cForm>
+              <form cForm [formGroup]="loginForm" (ngSubmit)="processLogin()">
                 <h1>Connexion</h1>
                 <p class="text-medium-emphasis">Merci de renseigner vos identifiants pour accéder à votre compte</p>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Email ou nom d'utilisateur" />
+                  <input  cFormControl placeholder="Email ou nom d'utilisateur" formControlName="email" />
                 </c-input-group>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
@@ -23,11 +23,12 @@
                     cFormControl
                     placeholder="Mot de passe"
                     type="password"
+                     formControlName="password"
                   />
                 </c-input-group>
                 <c-row>
                   <c-col xs="6">
-                    <button cButton class="px-4" color="primary" routerLink="/base/dashboard">
+                    <button cButton class="px-4" color="primary"  type="submit">
                       Connexion
                     </button>
                   </c-col>
@@ -41,7 +42,7 @@
             </c-card-body>
           </c-card>
           <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5 bg-img">
-            
+
           </c-card>
         </c-card-group>
       </c-col>

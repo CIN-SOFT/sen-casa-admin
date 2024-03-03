@@ -40,11 +40,14 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TransactionService } from './services/transaction.service';
 import { ProgramService } from './services/program.service';
 import { PropertyService } from './services/property.service';
 import { UserService } from './services/user.service';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { AuthService } from './services/auth.service';
+import { ToastrModule } from 'ngx-toastr';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -82,19 +85,22 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     NgScrollbarModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     IconSetService,
     Title,
     TransactionService,
     ProgramService,
     PropertyService,
-    UserService
+    UserService,
+    AuthService
   ],
   bootstrap: [AppComponent],
 })

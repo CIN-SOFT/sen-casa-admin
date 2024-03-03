@@ -20,4 +20,8 @@ export class UserService {
   getAllClientAccount(){
     return this.http.get(`${environment.apiUrl}casa/client/account`).pipe(response => response);
   }
+
+  getConnectUserInfo(){
+    return this.http.get(`${environment.apiUrl}/users/info`).pipe(response => response);
+  }
 }

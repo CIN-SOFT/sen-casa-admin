@@ -12,17 +12,17 @@ export const navItems: INavData[] = [
   // },
   {
     name: 'Comptes',
-    url: '/base/accounts',
+    url: '/admin/base/accounts',
     iconComponent: { name: 'cil-people' }
   },
   {
     name: 'Programmes',
-    url: '/base/programs',
+    url: '/admin/base/programs',
     iconComponent: { name: 'cil-puzzle' },
   },
   {
     name: 'Proprietés',
-    url: '/base/properties',
+    url: '/admin/base/properties',
     iconComponent: { name: 'cil-puzzle' },
   },
   // {
@@ -98,7 +98,7 @@ export const navItems: INavData[] = [
   //},
   {
     name: 'Souscriptions',
-    url: '/base/subscriptions',
+    url: '/admin/base/subscriptions',
     iconComponent: { name: 'cil-cursor' },
     // children: [
     //   {
@@ -117,7 +117,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Transactions',
-    url: '/forms',
+    url: '/admin/forms',
     iconComponent: { name: 'cil-notes' },
     // children: [
     //   {
@@ -235,7 +235,7 @@ export const navItems: INavData[] = [
   // },
   {
     name: 'Utilisateurs',
-    url: '/admin/users',
+    url: '/admin/parameters/users',
     iconComponent: { name: 'cil-user' },
   }
 ];

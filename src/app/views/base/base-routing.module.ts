@@ -33,7 +33,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'cards',
+        redirectTo: 'programs',
       },
       {
         path: 'accordion',
@@ -46,7 +46,7 @@ const routes: Routes = [
         path: 'programs',
         component: ProgramsComponent,
         data: {
-          title: 'Proprietés',
+          title: 'Programmes',
         },
       },
       {
