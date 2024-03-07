@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ImageUploadComponent } from '../components/image-upload/image-upload.component';
+import { SingleImageUploadComponent } from '../components/single-image-upload/single-image-upload.component';
 import { IconModule } from '@coreui/icons-angular';
 import { GridModule, UtilitiesModule, SharedModule } from '@coreui/angular';
 
@@ -13,10 +14,12 @@ import { GridModule, UtilitiesModule, SharedModule } from '@coreui/angular';
         SharedModule,
     ],
     exports: [
-        ImageUploadComponent
+        ImageUploadComponent,
+      SingleImageUploadComponent
     ],
     declarations: [
-        ImageUploadComponent
+        ImageUploadComponent,
+        SingleImageUploadComponent
     ],
 })
 export class CustomSharedModule { }

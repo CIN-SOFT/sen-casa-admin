@@ -3,7 +3,7 @@
     <c-col xs="12">
       <c-card class="mb-4">
         <c-card-header>
-          Listes des comptes <strong>actifs </strong> 
+          Listes des comptes <strong>actifs </strong>
         </c-card-header>
         <c-card-body>
           <c-row>
@@ -39,13 +39,13 @@
                     {{account?.id}}
                   </th>
                   <td>
-                    {{account?.first_name}} - {{account?.last_name}}
+                    {{account?.user?.first_name}} - {{account?.user?.last_name}}
                   </td>
                   <td>
-                    {{account?.email}}
+                    {{account?.user?.email}}
                   </td>
                   <td>
-                    {{account?.phone}}
+                    {{account?.user?.phone}}
                   </td>
                   <td>
                     {{account?.profession}}
@@ -66,7 +66,7 @@
                     </c-button-group>
                   </td>
                 </tr>
-              
+
              </tbody>
           </table>
         </c-card-body>
@@ -77,9 +77,9 @@
 
 
 <!-- modal account details -->
-<c-modal #userDetailsModal backdrop="static" 
+<c-modal #userDetailsModal backdrop="static"
   [visible]="modalVisible" [keyboard]="false" id="userDetails"
-  (visibleChange)="handleVisibilityModal($event)" scrollable alignment="center" 
+  (visibleChange)="handleVisibilityModal($event)" scrollable alignment="center"
   size="xl">
   <c-modal-header>
     <h5 cModalTitle>Modal title</h5>

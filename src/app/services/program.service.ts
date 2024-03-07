@@ -11,7 +11,7 @@ export class ProgramService {
   constructor(private http: HttpClient) { }
 
   addNewProgram(newProgram: any){
-   return this.http.post(`${environment.apiUrl}casa/program`, newProgram).pipe(response => response);
+    return this.http.post(`${environment.apiUrl}admin/programs`, newProgram).pipe(response => response);
   }
 
   getAllPrograms(page: number = 1, itemPerPage: number = 50){

@@ -3,7 +3,7 @@ export interface Program{
     name: string;
     lat: any;
     lng: any;
-    location: string;
+    projet: string;
     main_image?: string;
-    images?: string[]
+    images: any[]
 }

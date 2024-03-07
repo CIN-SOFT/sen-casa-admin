@@ -14,42 +14,58 @@ export class NewProgramComponent implements OnInit {
   programFrom = new FormGroup({
    // id: new FormControl(undefined),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    location: new FormControl(null, Validators.required),
-    lat: new FormControl(null, Validators.required),
-    lng: new FormControl(null, Validators.required),
-    minimum_save: new FormControl(null, Validators.required),
-    solde: new FormControl(null, Validators.required),
-    duration: new FormControl(null, Validators.required),
+    location: new FormControl(null),
+    lat: new FormControl(null),
+    lng: new FormControl(null),
+    projet: new FormControl(null, Validators.required),
+    property_no: new FormControl(null, Validators.required),
     description: new FormControl(null, Validators.required),
     status: new FormControl('active'),
-    images: new FormControl('', Validators.required)
+    //images: new FormControl([], Validators.required)
   });
   modalVisible: BooleanInput = false;
-
+  planImage: any;
+  allImages: any[] = []
   constructor(private programService: ProgramService, private router: Router) {}
 
   get name() { return this.programFrom.get('name'); }
   get location() { return this.programFrom.get('location'); }
   get lat() { return this.programFrom.get('lat'); }
-  get lng() { return this.programFrom.get('lng'); }
-  get minimum_save() { return this.programFrom.get('minimum_save'); }
-  get solde() { return this.programFrom.get('solde'); }
-  get duration() { return this.programFrom.get('duration'); }
+  get projet() { return this.programFrom.get('projet'); }
+  get property_no() { return this.programFrom.get('property_no'); }
   get description() { return this.programFrom.get('description'); }
-  get principalImage() { return this.programFrom.get('principalImage'); }
 
   ngOnInit(): void {}
 
   setImages(event: any){
-   this.programFrom.get('images')?.setValue(event);
+    console.log(event.length)
+    if(event.length > 0){
+      for(let img of event){
+        this.allImages.push({ 'type': 'house', 'name': img})
+      }
+
+    }
+  }
+
+  setPlanImage(event: any){
+    this.planImage = {'type': 'plan', 'name': event};
   }
 
   checkFormField(){
     if(this.programFrom.invalid){
-      console.log(this.programFrom)
       this.programFrom.markAllAsTouched();
       return;
     }
+    console.log(this.allImages)
+    if(this.allImages.length == 0){
+      return;
+    }
+    this.allImages.push(this.planImage)
+    let data = {
+      "images": this.allImages,
+      ...this.programFrom.value
+    }
+
     Swal.fire({
       title: "Voulez-vous vraiment ajouter ce programme ?",
       showDenyButton: true,
@@ -59,19 +75,19 @@ export class NewProgramComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.programService.addNewProgram(this.programFrom.value).subscribe({
+        this.programService.addNewProgram(data).subscribe({
           next: (resp: any) => {
             this.programFrom.reset();
             Swal.fire("Le programme é été ajouté avec succès et est maintenant visible!", "", "success");
-            this.router.navigate(['/base/programs']);
+            this.router.navigate(['/admin/base/programs']);
           },
           error: (error) => {
             console.log(error)
             Swal.fire("Oupss! Une erreur est survenu mer", "", "info");
           }
         })
-        
-      } 
+
+      }
     });
   }
 }

@@ -6,43 +6,43 @@
           <strong>Ajouter un nouveau programme</strong>
         </c-card-header>
         <c-card-body>
-          <div class="w-100 img-section" id="principalImage">
-            <div
-                      *ngIf="
-                        principalImage?.invalid &&
-                        (principalImage?.dirty || principalImage?.touched)
-                      "
-                      class="red-color"
-                    >
-                      <div *ngIf="principalImage?.errors?.['required']">
-                        L'image est requise
-                      </div>
-              </div>
-            <strong>Ajouter des images</strong>
-            <app-image-upload
-              [options]="{}"
-              [images]="[]"
-              (imageLoader)="setImages($event)"
-            ></app-image-upload>
-            
-          </div>
-          <div class="fields-section">
-            <form [formGroup]="programFrom" (ngSubmit)="checkFormField()">
+          <form [formGroup]="programFrom" (ngSubmit)="checkFormField()">
+            <c-row>
+              <c-col xs="12" sm="12" md="6" lg="6">
+                <div class="w-100 img-section" id="principalImage">
+                  <div *ngIf="allImages?.length == 0 && (name?.dirty || name?.touched)" class="red-color">
+                    <p>
+                      Veuillez ajouter des images
+                    </p>
+                  </div>
+                  <strong>Ajouter des images</strong>
+                  <app-image-upload [options]="{}" [images]="[]" (imageLoader)="setImages($event)"></app-image-upload>
+                </div>
+              </c-col>
+
+              <c-col xs="12" sm="12" md="6" lg="6">
+                <div class="w-100 img-section" id="planImage">
+                  <div *ngIf="!planImage && (name?.dirty || name?.touched)" class="red-color">
+                      <p>
+                        L'image du plan est requise
+                      </p>
+                  </div>
+                  <strong>Image du plan</strong>
+                  <app-single-image-upload [options]="{}" [image]="''"
+                    (imageLoader)="setPlanImage($event)"></app-single-image-upload>
+
+                </div>
+              </c-col>
+            </c-row>
+
+
+            <div class="fields-section">
               <c-row>
                 <c-col xs="12" sm="12" md="6" lg="6">
                   <div [cFormFloating]="true" class="mb-3">
-                    <input
-                      cFormControl
-                      id="name"
-                      placeholder="Nom du programme"
-                      type="text"
-                      formControlName="name"
-                    />
+                    <input cFormControl id="name" placeholder="Nom du programme" type="text" formControlName="name" />
                     <label cLabel for="programName">Nom du programme</label>
-                    <div
-                      *ngIf="name?.invalid && (name?.dirty || name?.touched)"
-                      class="red-color"
-                    >
+                    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="red-color">
                       <div *ngIf="name?.errors?.['required']">
                         Le nom est requis
                       </div>
@@ -52,7 +52,7 @@
                     </div>
                   </div>
                 </c-col>
-                <c-col xs="12" sm="12" md="6" lg="6">
+                <!-- <c-col xs="12" sm="12" md="6" lg="6">
                   <div [cFormFloating]="true" class="mb-3">
                     <input
                       cFormControl
@@ -114,60 +114,27 @@
                       </div>
                     </div>
                   </div>
-                </c-col>
+                </c-col> -->
 
                 <c-col xs="12" sm="12" md="6" lg="6">
                   <div [cFormFloating]="true" class="mb-3">
-                    <input
-                      cFormControl
-                      id="minimum_save"
-                      placeholder="Montant à épargner/jour"
-                      type="number"
-                      formControlName="minimum_save"
-                    />
-                    <label cLabel for="lng">Montant à épargner/jour</label>
-                    <div
-                      *ngIf="minimum_save?.invalid && (minimum_save?.dirty || minimum_save?.touched)"
-                      class="red-color"
-                    >
-                      <div *ngIf="minimum_save?.errors?.['required']">
-                        Montant à épargner/jour est obligatoire
+                    <input cFormControl id="property_no" placeholder="Nombre de propriétés disponible " type="number"
+                      formControlName="property_no" />
+                    <label cLabel for="solde">Nombre de propriétés disponible</label>
+                    <div *ngIf="property_no?.invalid && (property_no?.dirty || property_no?.touched)" class="red-color">
+                      <div *ngIf="property_no?.errors?.['required']">
+                        Le nombre de propriétés est requis
                       </div>
                     </div>
                   </div>
                 </c-col>
 
                 <c-col xs="12" sm="12" md="6" lg="6">
-                  <div [cFormFloating]="true" class="mb-3">
-                    <input
-                      cFormControl
-                      id="lng"
-                      placeholder="Montant total "
-                      type="number"
-                      formControlName="solde"
-                    />
-                    <label cLabel for="solde">Montant total </label>
-                    <div
-                      *ngIf="solde?.invalid && (solde?.dirty || solde?.touched)"
-                      class="red-color"
-                    >
-                      <div *ngIf="solde?.errors?.['required']">
-                        Le Montant total  est requis
-                      </div>
-                    </div>
-                  </div>
-                </c-col>
-
-                <c-col xs="12" sm="12" md="6" lg="6">
-                  <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg" formControlName="duration">
-                    <option [value]="null">Dur&eacute;e de paiment <span class="red-color">*</span></option>
-                    <option value="6">6 mois</option>
-                    <option value="12">12 mois</option>
-                    <option value="18">18 mois</option>
-                    <option value="24">24 mois</option>
-                    <option value="32">32 mois</option>
-                    <option value="48">48 mois</option>
-                    <option value="56">56 mois</option>
+                  <select aria-label="Type" cSelect class="mb-3 form-select" sizing="lg" formControlName="projet">
+                    <option [value]="null">
+                      Projet <span class="red-color">*</span>
+                    </option>
+                    <option value="dias-safi">Dias SAFI</option>
                   </select>
                 </c-col>
                 <c-col size="12" xs="12" sm="12" md="12" lg="12">
@@ -175,46 +142,30 @@
                     <strong class="mb-3">Description <span class="red-color">*</span></strong>
                   </div>
                   <editor [init]="{
-                    base_url: '/tinymce', 
-                    suffix: '.min'   
-                  }"
-                  formControlName="description" ></editor>
-                  <div
-                  *ngIf="
-                    description?.invalid &&
-                    description?.dirty || description?.touched
-                  "
-                  class="red-color"
-                >
-                  <div *ngIf="description?.errors?.['required']">
-                    La description est requise
+                      base_url: '/tinymce',
+                      suffix: '.min'
+                    }" formControlName="description"></editor>
+                  <div *ngIf="
+                      (description?.invalid && description?.dirty) ||
+                      description?.touched
+                    " class="red-color">
+                    <div *ngIf="description?.errors?.['required']">
+                      La description est requise
+                    </div>
                   </div>
-                </div>
                 </c-col>
               </c-row>
-              <c-row class="text-center d-flex gap-30 justify-center">
-                  <button
-                    cButton
-                    class="mb-3 white-color add-btn"
-                    color="primary"
-                    size="lg"
-                    type="submit"
-                  >
-                    Ajouter
-                  </button>
-                
-                  <button
-                    cButton
-                    class="mb-3 white-color close-btn"
-                    color="primary"
-                    size="lg"
-                    type="reset"
-                  >
-                    Retour
-                  </button>
+              <c-row class="text-center d-flex gap-30 justify-center mt-4">
+                <button cButton class="mb-3 white-color add-btn" color="primary" size="lg" type="submit">
+                  Ajouter
+                </button>
+
+                <button cButton class="mb-3 white-color close-btn" color="primary" size="lg" type="reset">
+                  Retour
+                </button>
               </c-row>
-            </form>
-          </div>
+            </div>
+          </form>
         </c-card-body>
       </c-card>
     </c-col>

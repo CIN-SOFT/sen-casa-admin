@@ -5,6 +5,7 @@ import { ProgramService } from 'src/app/services/program.service';
 import Swal from 'sweetalert2';
 import { Program } from '../../../interfaces/program.interface';
 import { PropertyService } from 'src/app/services/property.service';
+import { environment } from 'src/environments/environment';
 @Component({
   templateUrl: './programs.component.html',
   styleUrls: ['./programs.component.scss']
@@ -16,7 +17,8 @@ export class ProgramsComponent implements OnInit {
   modalVisible: boolean = false;
   modalModalDetailsVisible: boolean = false;
   programs: Program[] = [];
-
+  imagesApiUrl: string = environment.imagesApiUrl
+  planImage: string = "";
   constructor(private programService: ProgramService) {}
 
   ngOnInit(): void {
@@ -27,6 +29,9 @@ export class ProgramsComponent implements OnInit {
     this.programService.getAllPrograms().subscribe({
       next: (resp: any) => {
         this.programs = resp.data;
+        for(let pr of this.programs){
+          pr.main_image = pr?.images.find((i: any) => i.type == 'plan')['name']
+        }
       }
     })
   }
