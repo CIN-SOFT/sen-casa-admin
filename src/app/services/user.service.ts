@@ -20,6 +20,17 @@ export class UserService {
   getAllClientAccount(){
     return this.http.get(`${environment.apiUrl}users/admin/accounts`).pipe(response => response);
   }
+  getClientAccountDetails(id: number) {
+    return this.http.get(`${environment.apiUrl}users/admin/account/${id}`).pipe(response => response);
+  }
+
+  validateAccount(data: any){
+    return this.http.put(`${environment.apiUrl}users/admin/accounts/${data.id}`, data).pipe(response => response);
+  }
+
+  rejectAccount(data: any){
+    return this.http.post(`${environment.apiUrl}users/admin/review/account`, data).pipe(response => response);
+  }
 
   getConnectUserInfo(){
     return this.http.get(`${environment.apiUrl}/users/info`).pipe(response => response);
