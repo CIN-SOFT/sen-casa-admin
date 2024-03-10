@@ -57,7 +57,7 @@
                   </td>
                   <td>
                     <c-button-group aria-label="Actions" role="group" class="actions">
-                      <button cButton color="primary">
+                      <button cButton color="primary" [routerLink]="['/admin/base/accounts/details', account.id]">
                         <fa-icon [icon]="faEye"></fa-icon>
                       </button>
                       <button cButton color="danger">
@@ -75,21 +75,4 @@
   </c-row>
 </div>
 
-
-<!-- modal account details -->
-<c-modal #userDetailsModal backdrop="static"
-  [visible]="modalVisible" [keyboard]="false" id="userDetails"
-  (visibleChange)="handleVisibilityModal($event)" scrollable alignment="center"
-  size="xl">
-  <c-modal-header>
-    <h5 cModalTitle>Modal title</h5>
-    <button [cModalToggle]="userDetailsModal.id" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>Woohoo, you&#39;re reading this text in a modal!</c-modal-body>
-  <c-modal-footer>
-    <button [cModalToggle]="userDetailsModal.id" cButton color="secondary">
-      Fermer
-    </button>
-    <button cButton color="primary">Understood</button>
-  </c-modal-footer>
-</c-modal>
+è

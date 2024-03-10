@@ -1,0 +1,64 @@
+.actions{
+    button{
+        fa-icon{
+            color: #fff;
+        }
+    }
+}
+.profil-img{
+    border-radius: 50%;
+    margin: 40px auto 10px auto;
+}
+.docs{
+  padding: 30px 10px;
+  border: 1px solid #ccc;
+  .doc-col{
+    a{
+      text-decoration: none;
+      color: #000;
+      text-transform: uppercase;
+    }
+    img{
+      width: 80px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+}
+.user-info{
+  .account-row{
+    justify-content: space-between;
+  }
+  c-card.info{
+    width: calc(100% - 350px);
+    padding: 10px 20px;
+    c-row{
+      margin-top: 10px;
+      min-height: 45px;
+    }
+  }
+  c-card.comments{
+    width: 325px;
+    .validate-btn, .reject-btn{
+      color: #fff;
+      font-size: 16px;
+      padding: 8px 20px;
+      width: 120px;
+    }
+        .reject-btn{
+          background-color: #700101;
+          border: 1px solid #700101;
+        }
+
+        .light-border{
+          border-left: 2px solid #700101;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 15px;
+          em{
+            color: #ccc;
+          }
+        }
+  }
+}

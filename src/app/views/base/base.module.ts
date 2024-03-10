@@ -55,6 +55,7 @@ import { TabsComponent } from './tabs/tabs.component';
 // Components Routing
 import { BaseRoutingModule } from './base-routing.module';
 import { AccountsComponent } from './accounts/accounts.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 import { NewProgramComponent } from './new-program/new-program.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { PropertiesComponent } from './properties/properties.component';
@@ -127,6 +128,7 @@ import { CustomSharedModule } from 'src/app/shared/shared.module';
     TabsComponent,
     PlaceholdersComponent,
     AccountsComponent,
+    AccountDetailsComponent,
     SubscriptionsComponent,
     PropertiesComponent,
     NewPropertyComponent,

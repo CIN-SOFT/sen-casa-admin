@@ -20,8 +20,7 @@ export class AccountsComponent implements OnInit {
 
   ngOnInit(): void {
     // Take current queryParameters from the activated route snapshot
-    const urlParameters = Object.assign({}, this.route.snapshot.queryParams); 
-    console.log(urlParameters['status'])
+
     this.getAccounts()
   }
 

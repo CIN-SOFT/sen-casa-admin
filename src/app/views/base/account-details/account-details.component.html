@@ -1,0 +1,163 @@
+<div class="fade-in">
+  <c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header>
+          <c-row>
+            <c-col class="text-center" xs="12" md="12" lg="12" sm="12">
+              <img class="round profil-img" src="../../../../assets/img/avatars/1.jpg" alt="">
+              <h4 class="text-capitalize"> {{account?.user?.first_name}} {{account?.user?.last_name}}</h4>
+            </c-col>
+          </c-row>
+          <c-row class="docs">
+            <c-col class="text-center doc-col" xs="12" md="2" lg="2" sm="12" *ngFor="let doc of account?.files">
+              <a href="{{fileApiUrl}}/{{doc?.name}}" target="_blank" *ngIf="doc?.name.indexOf('.pdf') == -1; else docPdf">
+                <img src="{{fileApiUrl}}/{{doc?.name}}" alt="{{doc?.type}}" >
+                <p>{{doc?.type}}</p>
+              </a>
+              <ng-template #docPdf>
+                <a href="{{fileApiUrl}}/{{doc?.name}}" target="_blank" >
+                  <img src="../../../../assets/img/avatars/pdf.png" alt="{{doc?.type}}">
+                <p>{{doc?.type}}</p>
+              </a>
+              </ng-template>
+
+            </c-col>
+          </c-row>
+        </c-card-header>
+        <c-card-body>
+          <c-row>
+
+            <c-col class="user-info"  xs="12" md="12" lg="12" sm="12">
+              <div class="account-row d-flex">
+                 <c-card class="mb-4 mt-4 info">
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Prénom</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    {{account?.user?.first_name}}
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Nom</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    {{account?.user?.last_name}}
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Téléphone</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    {{account?.user?.phone}}
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Email</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    {{account?.user?.email}}
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Adresse</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    {{account?.address}}
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Profession</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    {{account?.profession}}
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Status</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <c-badge color="warning" shape="rounded-pill"  *ngIf="account?.account_status == 'pending_validation'"> En cours d'examen </c-badge>
+                    <c-badge color="success" shape="rounded-pill" class="validated success" *ngIf="account?.account_status == 'active'"> Validé </c-badge>
+                    <c-badge color="danger" shape="rounded-pill" class="suspended danger" *ngIf="account?.account_status == 'suspended'"> Suspendu </c-badge>
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Date d'inscription</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    {{account?.created_at | date:'dd/MM/yyyy hh:mm'}}
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    <b>Solde</b>
+                  </c-col>
+                  <c-col xs="12" md="6" lg="6" sm="12">
+                    {{account?.solde}}
+                  </c-col>
+                </c-row>
+
+              </c-card>
+              <c-card class="mb-4 mt-4 comments">
+                <c-card-body>
+                  <p>Commentaires</p>
+                  <div>
+                    <c-row *ngFor="let review of userComments">
+                      <c-col class="light-border">
+                        <label>{{review.comment}}</label>
+                        <em>{{review?.created_at | date:'dd/MM/yyyy hh:mm'}}</em>
+                      </c-col>
+                    </c-row>
+                  </div>
+                  <div>
+                    <strong>Ajouter un commentaire</strong>
+                    <div>
+                      <textarea name="comment" id="comment" rows="5" cFormControl #comment></textarea>
+                      <em class="red-color">Le commentaire est obligatoire en cas de rejet</em>
+                    </div>
+                    <div>
+                      <c-row class="justify-center mt-4">
+                        <c-col xl="6" md="6" lg="6" xs="12" sm="12">
+                          <button [disabled]="processingRequest" cButton class="validate-btn" color="primary" type="submit" *ngIf="account?.account_status == 'pending_validation'" (click)="validateAccount()">
+                            Valider
+                          </button>
+                        </c-col>
+
+                        <c-col xl="6" md="6" lg="6" xs="12" sm="12">
+                          <button [disabled]="processingRequest" cButton class="reject-btn" color="primary" type="reset" (click)="rejectAccount(comment.value)">
+                            Rejeter
+                          </button>
+                        </c-col>
+                      </c-row>
+                    </div>
+                  </div>
+                </c-card-body>
+              </c-card>
+              </div>
+            </c-col>
+          </c-row>
+        </c-card-body>
+
+      </c-card>
+    </c-col>
+  </c-row>
+</div>
+
+è

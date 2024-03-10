@@ -22,6 +22,7 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
 import { PropertiesComponent } from './properties/properties.component';
 import { NewPropertyComponent } from './new-property/new-property.component';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,13 @@ const routes: Routes = [
         component: AccountsComponent,
         data: {
           title: 'Comptes'
+        }
+      },
+      {
+        path: 'accounts/details/:id',
+        component: AccountDetailsComponent,
+        data: {
+          title: 'Détails'
         }
       },
       {
