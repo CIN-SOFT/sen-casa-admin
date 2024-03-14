@@ -61,7 +61,7 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
 import { PropertiesComponent } from './properties/properties.component';
 import { NewPropertyComponent } from './new-property/new-property.component';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
-
+import { TransactionsComponent } from './transactions/transactions.componentnent'
 import { IconSetService } from '@coreui/icons-angular';
 import { brandSet, flagSet, freeSet } from '@coreui/icons';
 
@@ -132,7 +132,8 @@ import { CustomSharedModule } from 'src/app/shared/shared.module';
     SubscriptionsComponent,
     PropertiesComponent,
     NewPropertyComponent,
-    PropertyDetailsComponent
+    PropertyDetailsComponent,
+    TransactionsComponent
   ],
   providers: [
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }

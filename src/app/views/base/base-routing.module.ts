@@ -23,6 +23,7 @@ import { PropertiesComponent } from './properties/properties.component';
 import { NewPropertyComponent } from './new-property/new-property.component';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { TransactionsComponent } from './transactions/transactions.componentnent';
 
 const routes: Routes = [
   {
@@ -105,6 +106,13 @@ const routes: Routes = [
         data: {
           title: 'Nouveau Programme',
         },
+      },
+      {
+        path: 'transactions',
+        component: TransactionsComponent,
+        data: {
+          title: 'Transactions'
+        }
       },
       {
         path: 'cards',

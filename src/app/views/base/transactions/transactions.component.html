@@ -1,0 +1,57 @@
+<div class="fade-in">
+  <c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header class="d-flex justify-between">
+          <label>Liste des <strong> Programmes </strong></label>
+          <button cButton color="primary"  class="float right" [routerLink]="['/admin/base/program/add']">
+            <fa-icon [icon]="faPlus" class="white-c" ></fa-icon>
+          </button>
+        </c-card-header>
+        <c-card-body>
+
+            <table [bordered]="true" cTable>
+              <thead>
+              <tr>
+                <th scope="col">Miniature</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Projet</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let program of programs">
+                  <th scope="row">
+                    <div *ngIf="program?.images">
+                      <img [src]="imagesApiUrl+'/'+program?.main_image" width="40" alt="" class="rounded">
+                    </div>
+                  </th>
+                  <td>
+                    <b>{{program?.name}}</b>
+                  </td>
+                  <td>
+                    {{program?.projet}}
+                  </td>
+                  <td>
+                    <c-badge color="success">En cours</c-badge>
+                  </td>
+                  <td>
+                    <c-button-group aria-label="Actions" role="group" class="actions">
+                      <button cButton color="primary">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                      </button>
+                      <button cButton color="danger">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                      </button>
+                    </c-button-group>
+                  </td>
+                </tr>
+
+             </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</div>
