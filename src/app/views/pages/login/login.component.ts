@@ -15,6 +15,7 @@ export class LoginComponent {
     email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required])
   })
+  processLoginReq: boolean = false;
   constructor(private authService: AuthService, private toastr: ToastrService, private router: Router) { }
 
   processLogin(){
@@ -22,14 +23,16 @@ export class LoginComponent {
       this.toastr.error('Formulaire invalid', 'Merci de renseigner correctement le formulaire');
       return;
     }
-
+    this.processLoginReq = true;
     this.authService.login(this.loginForm.value).subscribe({
         next: (resp: any) => {
           localStorage.setItem("sene-casa-token", resp.data.access_token)
           this.toastr.success('Connexion réussi');
+          this.processLoginReq = false;
         this.router.navigate(["/admin/dashboard"])
         },
         error: (error: any) => {
+          this.processLoginReq = false;
           this.toastr.error('Echec Connexion', 'La connexion a échoué. Merci de réessayer');
         }
     })

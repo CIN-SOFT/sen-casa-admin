@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Program } from '../../../interfaces/program.interface';
 import { PropertyService } from 'src/app/services/property.service';
 import { environment } from 'src/environments/environment';
+import { TransactionService } from 'src/app/services/transaction.service';
 @Component({
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.scss']
@@ -16,22 +17,23 @@ export class TransactionsComponent implements OnInit {
   faPlus = faPlus;
   modalVisible: boolean = false;
   modalModalDetailsVisible: boolean = false;
-  programs: Program[] = [];
+  transactions: any[] = [];
   imagesApiUrl: string = environment.imagesApiUrl
   planImage: string = "";
-  constructor(private programService: ProgramService) {}
+  constructor(private programService: ProgramService, private transactionService: TransactionService) {}
 
   ngOnInit(): void {
-    this.getPrograms()
+    this.getAllTransactions()
   }
 
-  getPrograms(){
-    this.programService.getAllPrograms().subscribe({
+
+
+  getAllTransactions(){
+    this.transactionService.getLastTransactions(1, 50).subscribe({
       next: (resp: any) => {
-        this.programs = resp.data;
-        for(let pr of this.programs){
-          pr.main_image = pr?.images.find((i: any) => i.type == 'plan')['name']
-        }
+         if(!resp.error){
+          this.transactions = resp.data;
+         }
       }
     })
   }

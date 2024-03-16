@@ -36,21 +36,7 @@ import { IconModule } from '@coreui/icons-angular';
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 
 // views
-import { AccordionsComponent } from './accordion/accordions.component';
 import { ProgramsComponent } from './programs/programs.component';
-import { CardsComponent } from './cards/cards.component';
-import { CarouselsComponent } from './carousels/carousels.component';
-import { CollapsesComponent } from './collapses/collapses.component';
-import { ListGroupsComponent } from './list-groups/list-groups.component';
-import { NavsComponent } from './navs/navs.component';
-import { PaginationsComponent } from './paginations/paginations.component';
-import { PlaceholdersComponent } from './placeholders/placeholders.component';
-import { PopoversComponent } from './popovers/popovers.component';
-import { ProgressComponent } from './progress/progress.component';
-import { SpinnersComponent } from './spinners/spinners.component';
-import { TablesComponent } from './tables/tables.component';
-import { TooltipsComponent } from './tooltips/tooltips.component';
-import { TabsComponent } from './tabs/tabs.component';
 
 // Components Routing
 import { BaseRoutingModule } from './base-routing.module';
@@ -61,7 +47,7 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
 import { PropertiesComponent } from './properties/properties.component';
 import { NewPropertyComponent } from './new-property/new-property.component';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
-import { TransactionsComponent } from './transactions/transactions.componentnent'
+import { TransactionsComponent } from './transactions/transactions.component'
 import { IconSetService } from '@coreui/icons-angular';
 import { brandSet, flagSet, freeSet } from '@coreui/icons';
 
@@ -111,22 +97,8 @@ import { CustomSharedModule } from 'src/app/shared/shared.module';
     FontAwesomeModule
   ],
   declarations: [
-    AccordionsComponent,
     ProgramsComponent,
     NewProgramComponent,
-    CardsComponent,
-    CarouselsComponent,
-    CollapsesComponent,
-    ListGroupsComponent,
-    NavsComponent,
-    PaginationsComponent,
-    PopoversComponent,
-    ProgressComponent,
-    SpinnersComponent,
-    TablesComponent,
-    TooltipsComponent,
-    TabsComponent,
-    PlaceholdersComponent,
     AccountsComponent,
     AccountDetailsComponent,
     SubscriptionsComponent,

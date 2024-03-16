@@ -3,46 +3,44 @@
     <c-col xs="12">
       <c-card class="mb-4">
         <c-card-header class="d-flex justify-between">
-          <label>Liste des <strong> Programmes </strong></label>
-          <button cButton color="primary"  class="float right" [routerLink]="['/admin/base/program/add']">
-            <fa-icon [icon]="faPlus" class="white-c" ></fa-icon>
-          </button>
+          <label>Liste des <strong> Transactions </strong></label>
         </c-card-header>
         <c-card-body>
 
             <table [bordered]="true" cTable>
               <thead>
               <tr>
-                <th scope="col">Miniature</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Projet</th>
+                <th scope="col">Client</th>
+                <th scope="col">Date</th>
+                <th scope="col">Montant</th>
+                <th scope="col">Opérateur</th>
                 <th scope="col">Statut</th>
                 <th scope="col">Actions</th>
               </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let program of programs">
+                <tr *ngFor="let trx of transactions">
                   <th scope="row">
-                    <div *ngIf="program?.images">
-                      <img [src]="imagesApiUrl+'/'+program?.main_image" width="40" alt="" class="rounded">
-                    </div>
+                    {{trx?.client_account?.user?.first_name}} - {{trx?.client_account?.user?.last_name}}
                   </th>
                   <td>
-                    <b>{{program?.name}}</b>
+                    {{trx?.created_at | date:'dd/MM/yyy HH:mm'}}
                   </td>
                   <td>
-                    {{program?.projet}}
+                    {{trx?.amount}} FCFA
+                  </td>
+
+                  <td>
+                    {{trx?.operator}}
                   </td>
                   <td>
-                    <c-badge color="success">En cours</c-badge>
+                    <c-badge color="warning" *ngIf="trx.status == 'inprogress'">En cours</c-badge>
+                    <c-badge color="success" *ngIf="trx.status == 'success'">Validé</c-badge>
                   </td>
                   <td>
                     <c-button-group aria-label="Actions" role="group" class="actions">
                       <button cButton color="primary">
                         <fa-icon [icon]="faEye"></fa-icon>
-                      </button>
-                      <button cButton color="danger">
-                        <fa-icon [icon]="faTrash"></fa-icon>
                       </button>
                     </c-button-group>
                   </td>
