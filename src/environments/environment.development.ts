@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://sarto-casa-api.cin-soft.com/api/', //'http://api-sama-keur.test/api/'
-  imagesApiUrl: "https://sarto-casa-api.cin-soft.com/images/",
-  filesApiUrl: "https://sarto-casa-api.cin-soft.com/files/",
+  apiUrl: 'https://api.natt-ker.com/api/', //'http://api-sama-keur.test/api/'
+  imagesApiUrl: "https://api.natt-ker.com/api/images/",
+  filesApiUrl: "https://api.natt-ker.com/api/files/",
 };
